@@ -23,17 +23,15 @@ XXX
 
 
 ## Starting point
-Inspo
-https://www.chronotrains.com
+This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin. However, this website mostly features bigger cities as destinations, and the filter only allows for a travel time between one and eight hours. One example: The website only shows Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
 
-Inspiriert vom Serviceportal der DB: https://www.bahn.de/angebot/urlaub/bahnreisen/summerrail 
+So, I asked myself: If I wanted to do a day or weekend trip for which I wanted to spend less than one hour on the train: Which destinations can I reach? This question was the starting point of my work.
 
-
--	Max. 8h per Zug ab München (Reisezeit per Zug, nicht Autofahrzeit) 
--	Max. X Umstiege (?)
--	Reiseziel muss Bahnhof haben
--	Reiseziel muss groß genug sein für Unterkünfte z.B. auf Airbnb oder Booking
--	Reiseziel muss groß genug sein für Sehenswürdigkeiten z.B. X Einträge auf TripAdvisor
+Parameters: 
+- *origin*: Munich central station because that's where I live
+- *travel* time: max. one hour
+- *travel speed*: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
+- *destinations*: must have a train station and must have at least one hotel in case I want to spend the night
 
 ## Narrowing down and question
 From 8h on the train to 1h on the train
@@ -235,3 +233,6 @@ mark Streamlit as potential next steps, why not done: this is an exploration > l
 
 ## Credits 
 Copy the current status of the credits.md file here
+
+## Sources
+[1] https://en.wikipedia.org/wiki/Regional-Express 
