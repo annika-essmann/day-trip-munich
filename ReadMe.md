@@ -73,7 +73,7 @@ By using osmconvert, I merged the data of the four tiles together. The result ar
 ### Challenge: Show all necessary tags
 *Problem*: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.
 *Reason*: The OSM driver in QGIS uses a certain way of formatting to process tags. 
-*Solution*: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "official_name" as standard columns because the names of the train stations are sometimes listed there.
+*Solution*: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
 ### Step: Check Geometry – Duplicated Geometry 
 I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
@@ -82,10 +82,9 @@ I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processin
 ### Step: Reproject map data to correct EPSG code
 QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
 
-
-
-### Filter
-Ich habe zu viele rail points, die ganzen Signale sind mit dabei. Also habe ich in QGIS die point layer gefiltert mit “railway” IN(‘stop’) AND “train“ IN(‘yes’). Dadurch werden nur Bahnhöfe angezeigt, auch S-Bahnhöfe, aber das ist nicht so schlimm, weil die Distanz bei max. 100 km liegt – das ist außerhalb des S-Bahn-Einzugsgebiets.
+### Step: Filter only for train stations
+QGIS displays the rail data as a line layer (the network) and a point layer (the stations). However, the point layer also includes all signaling posts. To remove this noise, I filtered the layer with the SQL WHERE statement: 
+“railway” IN(‘stop’) AND “train“ IN(‘yes’). 
 
 ### Snap geometries to layer
 -	Algorithm Vector geometry - Snap geometries to layer
