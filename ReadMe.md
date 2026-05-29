@@ -75,7 +75,7 @@ By using osmconvert, I merged the data of the four tiles together. The result ar
 *Reason*: The OSM driver in QGIS uses a certain way of formatting to process tags. 
 *Solution*: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
-### Step: Check Geometry – Duplicated Geometry 
+### Step: Check for duplicates 
 I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
 *Why?* I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
@@ -86,13 +86,9 @@ QGIS imported the map data with the EPSG code 4326 which measures distances in l
 QGIS displays the rail data as a line layer (the network) and a point layer (the stations). However, the point layer also includes all signaling posts. To remove this noise, I filtered the layer with the SQL WHERE statement: 
 “railway” IN(‘stop’) AND “train“ IN(‘yes’). 
 
-### Snap geometries to layer
--	Algorithm Vector geometry - Snap geometries to layer
-	Snap rail – points to rail – lines 
-	Prefer aligning nodes, insert extra vertices where required
-	Important: because I had a filter on the layer rail – points, the snapping was only done for the filtered points
-	Output was a new layer with the pre-filtered snapped points
-- Result: V2.4_rail_points_after_snap
+### Step: Snap geometries to layer
+I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines. 
+*Why?* Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
 ### Creating the file rail_start
 
