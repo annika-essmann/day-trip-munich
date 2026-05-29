@@ -64,6 +64,12 @@ I used latitude and longitude because they were an effective means to define the
 I also added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
 See a visualisation in tile_numbering.pdf
 
+### Step: Pull map data
+To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail network and once for the hotels. The documentation of the OQL queries can be found in osm_overpass_api_queries.md 
+
+### Step: Combine map tiles
+By using osmconvert, I merged the data of the four tiles together. The result are two files, one contains the rail network, the other the hotels. The documentation of the applied commands can be found in osmconvert_commands.md
+
 ### Check geometry – Duplicated Geometry 
 Das ist wichtig, weil ich einen Overlap für Tile 1 und Tile 3 angelegt habe: 
 Tile 1: +0,05° nach Osten und Süden
