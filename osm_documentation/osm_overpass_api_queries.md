@@ -1,5 +1,5 @@
 # Documentation: Queries used in the OpenStreetMap Overpass API
-This document lists the queries which I used in the OpenStreetMap Overpass API to obtain the data listed in the folder mapdata/original. This data was the basis to make calculations in the software QGIS. The result of these calculations are the geopackage files (.gpkg) in the folder mapdata. 
+This document lists the queries which I used in the OpenStreetMap Overpass API to obtain the data listed in the folder mapdata/original. This data served as the basis to make calculations in the programme QGIS, a geographic information system software to analyse geospatial data. The result of these calculations are files in the folder mapdata. 
 
 ## Tile numbering
 To reduce the volume of the data that I requested from the API, I divided the map - so the surroundings of Munich - into four tiles. The division moves clockwise like this:  
@@ -37,7 +37,7 @@ out geom;
 
 node["tourism"="hotel"];
 
-/* out skel: don't use; name tag needed later*/
+/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/
 out geom;
 
 ## QUERY TILE 2 - RAIL
