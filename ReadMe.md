@@ -55,13 +55,14 @@ My starting point is Munich, and I want to potentially travel into each directio
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
 ### Challenge: Segment map
-Context: I'm interested in the area surrounding Munich that st
-Question: The 
-
-
-Die Datenmenge, die ich von der API abfrage für den gesamten Kartenbereich, ist enorm. Was mache ich jetzt? 
-Die Karte in Segmente unterteilen. Lösung. Ich habe 4 Segmente angelegt mit jeweils 1° Unterschied, das entspricht ganz, ganz grob 100km in jede Himmelsrichtung. 1° lässt sich gut addieren in jede Himmelsrichtung. 
-Wichtig: bei den Segmenten musste ich einen Overlap von 0.05° einbauen, damit später bei der Zusammenführung keine nodes oder ways fehlen bzw. broken sind. Duplikate sind hier nicht schlimm. Programme wie osmconvert entfernen die Duplikate, da sie doppelte IDs aussortieren. Jede Node und jeder Way haben eine einzigartige ID.
+*Problem*: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. 
+*Solution*: I divided the map into the following four segments: 
+- tile_1 = north west of Munich
+- tile_2 = north east of Munich
+- tile_3 = south east of Munich
+- tile_4 = south west of Munich
+I also added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
+See a visualisation in tile_numbering.pdf
 
 ### Check geometry – Duplicated Geometry 
 Das ist wichtig, weil ich einen Overlap für Tile 1 und Tile 3 angelegt habe: 
