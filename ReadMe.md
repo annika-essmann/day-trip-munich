@@ -70,16 +70,19 @@ To make the analysis of the map data easier later on, I pulled data from one til
 ### Step: Combine map tiles
 By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. In the following, I refer to the data of these files as map data. The documentation of the applied commands can be found in osmconvert_commands.md
 
+### Challenge: Show all necessary tags
+*Problem*: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.
+*Reason*: The OSM driver in QGIS uses a certain way of formatting to process tags. 
+*Solution*: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "official_name" as standard columns because the names of the train stations are sometimes listed there.
+
 ### Step: Check Geometry – Duplicated Geometry 
-I imported the map data into QGIS. First, I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
+I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
 *Why?* I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
 ### Step: Reproject map data to correct EPSG code
 QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
 
-### Data cleaning: show all necessary tags
-Einige Tags werden beim Import der osm Datei in QGIS nicht richtig gelesen. Mehrere Tags werden in eine Spalte ‚other_tags‘ zusammengelegt. Das liegt daran, wie der OSM Driver in QGIS arbeitet. Er benutzt HSTORE formatting, um Tags zu verarbeiten. Das ist problematisch, weil in der ‚other_tags‘ Spalte Tags stehen, die ich später brauche – vor allem die Name der Bahnhöfe, die nicht in diesem Tag stehen „name“=“xxx“, wie bei den Hotels, sondern manchmal unter „ref_name“ oder „official_name“. Dafür muss die osmconf.ini im C:\ Laufwerk geändert werden – also die Konfiguration, wie eine osm Datei importiert wird. 
--	C:\Program Files\QGIS 3.44.9\apps\gdal\share\gdal
+
 
 ### Filter
 Ich habe zu viele rail points, die ganzen Signale sind mit dabei. Also habe ich in QGIS die point layer gefiltert mit “railway” IN(‘stop’) AND “train“ IN(‘yes’). Dadurch werden nur Bahnhöfe angezeigt, auch S-Bahnhöfe, aber das ist nicht so schlimm, weil die Distanz bei max. 100 km liegt – das ist außerhalb des S-Bahn-Einzugsgebiets.
