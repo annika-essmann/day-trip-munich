@@ -1,9 +1,7 @@
 # GenAI as a project tutor 
-
-## Reason
 I used GenAI, more specifically, ChatGPT and GreenPT, for the following reasons: 
 - as a faster search engine because my questions had multiple variables that would have been difficult to convert for a search engine, even with operators like AND.
-- as a tutor - but not as an easy way to get an answer - that I asked for help when I didn't find an answer myself after 30-60min.  
+- as a tutor - but not as an easy way to progress - that I asked for help when I didn't find an answer myself after 30-60min.  
 
 ## Used models
 ChatGPT (until 2 Mai 2026): GPT-5.3 and GPT-5.5
@@ -16,6 +14,11 @@ I switched services due to OpenAI's contract with the US Pentagon and because Gr
 
 ## Data protection
 Neither the map data nor the raster data nor any other files were uploaded to ChatGPT or GreenPT. 
+
+### Hallucinations (selection)
+ChatGPT provided commands to handle osmconvert in Windows Command Prompt. The commands were wrong because they somehow mixed Windows and Linux commands.
+
+GreenPT suggested the algorithm 'Split lines by points', as part of the QGIS Processing Toolbox. This algorithm doesn't exist. 
 
 ## ChatGPT initial chat prompt
 You are a senior data analyst who has years of experience working with geospatial data. I will use this chat to ask you questions on how to retrieve and analyse geospatial data. I want you to use concise and precise answers with examples. My questions will concern, amongst others, the Overpass query language.
@@ -73,9 +76,4 @@ I'm getting an error message on this statement. What I want to achieve: An OR lo
 So: ["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] ); # Original statement [timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;
 
 ### Help with project scope
-How many GB of data can QGIS process at once? In this context: What about data formats like GEOjson, GPX, KML, OSM raw data? Provide a link to the source on which you base your answer. 
-
-### Hallucinations (selection)
-ChatGPT provided commands to handle osmconvert in Windows Command Prompt. The commands were wrong because they somehow mixed Windows and Linux commands.
-
-GreenPT suggested the algorithm 'Split lines by points', as part of the QGIS Processing Toolbox. This algorithm doesn't exist. 
+How many GB of data can QGIS process at once? In this context: What about data formats like GEOjson, GPX, KML, OSM raw data?
