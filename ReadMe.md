@@ -68,16 +68,14 @@ See a visualisation in tile_numbering.pdf
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail network and once for the hotels. The documentation of the OQL queries can be found in osm_overpass_api_queries.md 
 
 ### Step: Combine map tiles
-By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. The documentation of the applied commands can be found in osmconvert_commands.md
+By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. In the following, I refer to the data of these files as map data. The documentation of the applied commands can be found in osmconvert_commands.md
 
-### Check geometry – Duplicated Geometry 
-I imported the files all_rail.osm and all_hotel.osm into QGIS. First, I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
-*Why?* I used an overlap for tile 1 and 3 in the original data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
+### Step: Check Geometry – Duplicated Geometry 
+I imported the map data into QGIS. First, I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
+*Why?* I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
-### Data cleaning: convert API export to correct EPSG code
-Die Exports aus der Overpass API werden in QGIS mit dem EPSG-Code 4326 reingeladen – weil die bounding boxes in lat/lon angegeben waren. Die Rasterkarten sind aber mit einem EPSG-Code 25832 angegeben für den UTM Bereich, in dem sich auch Deutschland befindet. Hier wird in Metern gerechnet. Die Layer musste ich permanent auf EPSG-Code 25832 setzen, damit später bei der Berechnung der Distanzen keine Fehler auftreten. 
--	In order to project the layers, I had to export them as new gpkg files 
-- that's how the change happened from the original .osm files to the .gpkg files finally used in the QGIS file result_destinations.qgz
+### Step: Reproject map data to correct EPSG code
+QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
 
 ### Data cleaning: show all necessary tags
 Einige Tags werden beim Import der osm Datei in QGIS nicht richtig gelesen. Mehrere Tags werden in eine Spalte ‚other_tags‘ zusammengelegt. Das liegt daran, wie der OSM Driver in QGIS arbeitet. Er benutzt HSTORE formatting, um Tags zu verarbeiten. Das ist problematisch, weil in der ‚other_tags‘ Spalte Tags stehen, die ich später brauche – vor allem die Name der Bahnhöfe, die nicht in diesem Tag stehen „name“=“xxx“, wie bei den Hotels, sondern manchmal unter „ref_name“ oder „official_name“. Dafür muss die osmconf.ini im C:\ Laufwerk geändert werden – also die Konfiguration, wie eine osm Datei importiert wird. 
