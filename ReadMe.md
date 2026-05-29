@@ -48,9 +48,9 @@ I used the following API, languages and software to complete this project:
 In this section, I describe in detail and chronologically which methods I applied. 
 
 ### Step: Define map area
-My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is very approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
-- Munich: 48.1833728, 11.5939383
-- Coordinates for the map: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
+My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
+- *Munich*: 48.1833728, 11.5939383
+- *Coordinates for the map*: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
 
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
@@ -68,16 +68,11 @@ See a visualisation in tile_numbering.pdf
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail network and once for the hotels. The documentation of the OQL queries can be found in osm_overpass_api_queries.md 
 
 ### Step: Combine map tiles
-By using osmconvert, I merged the data of the four tiles together. The result are two files, one contains the rail network, the other the hotels. The documentation of the applied commands can be found in osmconvert_commands.md
+By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. The documentation of the applied commands can be found in osmconvert_commands.md
 
 ### Check geometry – Duplicated Geometry 
-Das ist wichtig, weil ich einen Overlap für Tile 1 und Tile 3 angelegt habe: 
-Tile 1: +0,05° nach Osten und Süden
-Tile 3: +0.05° nach Norden und Westen
-Dadurch entstand ein Overlap für Tiles 2 und 4. 
-Ich habe die vier Tiles dann zusammengeführt mit OsmConvert. Üblicherweise entfernt OsmConvert alle Duplikate. Duplikate sind jene, bei denen der unique identifier hier „id“ bzw. „osm_id“ gleich ist. 
-Die merged files werden in QGIS in mehreren Layers importiert. Für jeden einzelnen Layer habe ich den Algorithmus laufen lassen. 
-Ergebnis für Rails und Hotel: keine Duplikate, nicht in der Karte sichtbar, double check jeweils in den attribute tables: keine values
+I imported the files all_rail.osm and all_hotel.osm into QGIS. First, I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
+*Why?* I used an overlap for tile 1 and 3 in the original data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
 ### Data cleaning: convert API export to correct EPSG code
 Die Exports aus der Overpass API werden in QGIS mit dem EPSG-Code 4326 reingeladen – weil die bounding boxes in lat/lon angegeben waren. Die Rasterkarten sind aber mit einem EPSG-Code 25832 angegeben für den UTM Bereich, in dem sich auch Deutschland befindet. Hier wird in Metern gerechnet. Die Layer musste ich permanent auf EPSG-Code 25832 setzen, damit später bei der Berechnung der Distanzen keine Fehler auftreten. 
