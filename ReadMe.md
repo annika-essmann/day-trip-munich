@@ -33,20 +33,32 @@ Parameters:
 - *travel speed*: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
 - *destinations*: must have a train station and must have at least one hotel in case I want to spend the night
 
-## Tools
+## Methods: Tools
 I used the following API, languages and software to complete this project: 
 - *OpenStreetMap Overpass API*: to access the geo-spatial data needed
 - *Overpass Query Language (OQL)*: to write the query that pulls the data from the API
 - *osmconvert, a programme to edit OpenStreetMap data*: to merge the pulled data into one file
 - *Windows PowerShell*: to handle osmconvert because it doesn't have a graphical interface
-- *QGIS*, a a geographic information system software: to analyse and visualise the data
+- *QGIS, a a geographic information system software*: to analyse and visualise the data
 - *Structured Query Language (SQL)*: to filter the data in QGIS
 - *git*: to track changes and upload the project to GitHub
+- *Visual Studio Code*: to handle git and edit mark down files
 
-## Steps and challenges solved 
+## Methods: Steps taken and challenges solved 
+In this section, I describe in detail and chronologically which methods I applied. 
+
+### Step: Define map area
+My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is very approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
+- Munich: 48.1833728, 11.5939383
+- Coordinates for the map: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
+
+I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
+
+### Challenge: Segment map
+Context: I'm interested in the area surrounding Munich that st
+Question: The 
 
 
-### Segment map
 Die Datenmenge, die ich von der API abfrage für den gesamten Kartenbereich, ist enorm. Was mache ich jetzt? 
 Die Karte in Segmente unterteilen. Lösung. Ich habe 4 Segmente angelegt mit jeweils 1° Unterschied, das entspricht ganz, ganz grob 100km in jede Himmelsrichtung. 1° lässt sich gut addieren in jede Himmelsrichtung. 
 Wichtig: bei den Segmenten musste ich einen Overlap von 0.05° einbauen, damit später bei der Zusammenführung keine nodes oder ways fehlen bzw. broken sind. Duplikate sind hier nicht schlimm. Programme wie osmconvert entfernen die Duplikate, da sie doppelte IDs aussortieren. Jede Node und jeder Way haben eine einzigartige ID.
