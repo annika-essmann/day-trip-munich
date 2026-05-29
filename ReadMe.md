@@ -33,27 +33,18 @@ Parameters:
 - *travel speed*: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
 - *destinations*: must have a train station and must have at least one hotel in case I want to spend the night
 
-## Narrowing down and question
-From 8h on the train to 1h on the train
-why? data volume, data handling, data access of raster data
+## Tools
+I used the following API, languages and software to complete this project: 
+- *OpenStreetMap Overpass API*: to access the geo-spatial data needed
+- *Overpass Query Language (OQL)*: to write the query that pulls the data from the API
+- *osmconvert, a programme to edit OpenStreetMap data*: to merge the pulled data into one file
+- *Windows PowerShell*: to handle osmconvert because it doesn't have a graphical interface
+- *QGIS*, a a geographic information system software: to analyse and visualise the data
+- *Structured Query Language (SQL)*: to filter the data in QGIS
+- *git*: to track changes and upload the project to GitHub
 
-Zusammengenommen kommen die 4 Kartensegmente auf 47MB. Diese 4 Kartensegmente bilden aber nur ca. 100km in jede Himmelsrichtung ab. Für 800km in jede Himmelsrichtung wäre das Datenvolumen also nochmal deutlich höher. 
-- 8 tiles in jede Himmelsrichtung
-- also der tile 1 oben links (north east) würde 8x8 = 64 tiles beinhalten
-- das mal 4 = 256 tiles
-- das mal 10 MB = 2.560 MB (2,56 GB)
-- too much for QGIS to handle when in a text-based format
-- too many tiles to handle for me
+## Steps and challenges solved 
 
-Aber: Die Overpass API bietet nur textbasierte Dateiformate als Export an, z.B. ist das Dateiformat .osm im XML Format. Das ist problematisch, weil Anwendungen wie QGIS mit mehr als 1-2GB im XML Format sehr langsam sind in der Verarbeitung. Daher ist eine Konvertierung in ein binäres Format von Vorteil, z.B. mit osmconvert. 
-Im binären Format kann QGIS auch größere Datenmengen verarbeiten. 
-
-
-
-
-## Methods: steps, tools and challenges solved 
-e.g. SQL query that does xyz
-which algorithm and why
 
 ### Segment map
 Die Datenmenge, die ich von der API abfrage für den gesamten Kartenbereich, ist enorm. Was mache ich jetzt? 
