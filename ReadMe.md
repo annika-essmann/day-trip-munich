@@ -28,35 +28,35 @@ This project is inspired by the website https://www.chronotrains.com which allow
 So, I asked myself: If I wanted to do a day or weekend trip for which I wanted to spend less than one hour on the train: Which destinations can I reach? This question was the starting point of my work.
 
 Parameters: 
-- *origin*: Munich central station because that's where I live
-- *travel* time: max. one hour
-- *travel speed*: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
-- *destinations*: must have a train station and must have at least one hotel in case I want to spend the night
+- **Origin**: Munich central station because that's where I live
+- **Travel** time: max. one hour
+- **Travel speed**: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
+- **Destinations**: must have a train station and must have at least one hotel in case I want to spend the night
 
 ## Methods: Tools
 I used the following API, languages and software to complete this project: 
-- *OpenStreetMap Overpass API*: to access the geo-spatial data needed
-- *Overpass Query Language (OQL)*: to write the query that pulls the data from the API
-- *osmconvert, a programme to edit OpenStreetMap data*: to merge the pulled data into one file
-- *Windows PowerShell*: to handle osmconvert because it doesn't have a graphical interface
-- *QGIS, a a geographic information system software*: to analyse and visualise the data
-- *Structured Query Language (SQL)*: to filter the data in QGIS
-- *git*: to track changes and upload the project to GitHub
-- *Visual Studio Code*: to handle git and edit mark down files
+- **OpenStreetMap Overpass API**: to access the geo-spatial data needed
+- **Overpass Query Language (OQL)**: to write the query that pulls the data from the API
+- **osmconvert, a programme to edit OpenStreetMap data**: to merge the pulled data into one file
+- **Windows PowerShell**: to handle osmconvert because it doesn't have a graphical interface
+- **QGIS, a a geographic information system software**: to analyse and visualise the data
+- **Structured Query Language (SQL)**: to filter the data in QGIS
+- **git**: to track changes and upload the project to GitHub
+- **Visual Studio Code**: to handle git and edit mark down files
 
 ## Methods: Steps taken and challenges solved 
 In this section, I describe in detail and chronologically which methods I applied. 
 
 ### Step: Define map area
 My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
-- *Munich*: 48.1833728, 11.5939383
-- *Coordinates for the map*: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
+- **Munich**: 48.1833728, 11.5939383
+- **Coordinates for the map**: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
 
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
 ### Challenge: Segment map
-*Problem*: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. 
-*Solution*: I divided the map into the following four segments: 
+**Problem**: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. 
+**Solution**: I divided the map into the following four segments: 
 - tile_1 = north west of Munich
 - tile_2 = north east of Munich
 - tile_3 = south east of Munich
@@ -71,13 +71,13 @@ To make the analysis of the map data easier later on, I pulled data from one til
 By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. In the following, I refer to the data of these files as map data. The documentation of the applied commands can be found in osmconvert_commands.md
 
 ### Challenge: Show all necessary tags
-*Problem*: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.
-*Reason*: The OSM driver in QGIS uses a certain way of formatting to process tags. 
-*Solution*: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
+**Problem**: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.
+**Reason**: The OSM driver in QGIS uses a certain way of formatting to process tags. 
+**Solution**: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
 ### Step: Check for duplicates 
 I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
-*Why?* I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
+**Why?** I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
 ### Step: Reproject map data to correct EPSG code
 QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
@@ -88,7 +88,7 @@ QGIS displays the rail data as a line layer (the network) and a point layer (the
 
 ### Step: Snap geometries to layer
 I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines. 
-*Why?* Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
+**Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
 ### Creating the file rail_start
 
