@@ -55,7 +55,7 @@ My starting point is Munich, and I want to potentially travel into each directio
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
 ### Challenge: Segment map
-**Problem**: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. <br>
+**Problem**: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB.<br>
 **Solution**: I divided the map into the following four segments: 
 - tile_1 = north west of Munich
 - tile_2 = north east of Munich
@@ -71,23 +71,23 @@ To make the analysis of the map data easier later on, I pulled data from one til
 By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. In the following, I refer to the data of these files as map data. The documentation of the applied commands can be found in osmconvert_commands.md
 
 ### Challenge: Show all necessary tags
-**Problem**: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.
-**Reason**: The OSM driver in QGIS uses a certain way of formatting to process tags. 
+**Problem**: I imported the map data into QGIS, but the data isn't read correctly. A lot of tags that I need are listed together in the column other_tags. Though, I need some of the tags in this column for filtering the map data.<br>
+**Reason**: The OSM driver in QGIS uses a certain way of formatting to process tags.<br>
 **Solution**: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
 ### Step: Check for duplicates 
-I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors. 
+I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors.<br>
 **Why?** I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
 ### Step: Reproject map data to correct EPSG code
 QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
 
 ### Step: Filter only for train stations
-QGIS displays the rail data as a line layer (the network) and a point layer (the stations). However, the point layer also includes all signaling posts. To remove this noise, I filtered the layer with the SQL WHERE statement: 
+QGIS displays the rail data as a line layer (the network) and a point layer (the stations). However, the point layer also includes all signaling posts. To remove this noise, I filtered the layer with the SQL WHERE statement:<br>
 “railway” IN(‘stop’) AND “train“ IN(‘yes’). 
 
 ### Step: Snap geometries to layer
-I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines. 
+I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
 ### Creating the file rail_start
