@@ -50,8 +50,7 @@ In this section, I describe in detail and chronologically which methods I applie
 ### Step: Define map area
 My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
 - **Munich**: 48.1833728, 11.5939383
-- **Coordinates for the map**: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)
-
+- **Coordinates for the map**: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)<br>
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
 ### Challenge: Segment map
@@ -60,7 +59,7 @@ I used latitude and longitude because they were an effective means to define the
 - tile_1 = north west of Munich
 - tile_2 = north east of Munich
 - tile_3 = south east of Munich
-- tile_4 = south west of Munich
+- tile_4 = south west of Munich<br>
 I also added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
 See a visualisation in tile_numbering.pdf
 
