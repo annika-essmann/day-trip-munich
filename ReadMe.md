@@ -29,7 +29,7 @@ So, I asked myself: If I wanted to do a day or weekend trip for which I wanted t
 
 Parameters: 
 - **Origin**: Munich central station because that's where I live
-- **Travel** time: max. one hour
+- **Travel time**: max. one hour
 - **Travel speed**: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
 - **Destinations**: must have a train station and must have at least one hotel in case I want to spend the night
 
@@ -39,7 +39,7 @@ I used the following API, languages and software to complete this project:
 - **Overpass Query Language (OQL)**: to write the query that pulls the data from the API
 - **osmconvert, a programme to edit OpenStreetMap data**: to merge the pulled data into one file
 - **Windows PowerShell**: to handle osmconvert because it doesn't have a graphical interface
-- **QGIS, a a geographic information system software**: to analyse and visualise the data
+- **QGIS, a geographic information system software**: to analyse and visualise the data
 - **Structured Query Language (SQL)**: to filter the data in QGIS
 - **git**: to track changes and upload the project to GitHub
 - **Visual Studio Code**: to handle git and edit mark down files
@@ -55,7 +55,7 @@ My starting point is Munich, and I want to potentially travel into each directio
 I used latitude and longitude because they were an effective means to define the bounding box that the OpenStreetMap Overpass API uses to fetch the data that lies within the borders of this box.
 
 ### Challenge: Segment map
-**Problem**: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. 
+**Problem**: The data that I wanted to pull from the API, using the coordinates above as the bounding box, is quite large: 20MB. <br>
 **Solution**: I divided the map into the following four segments: 
 - tile_1 = north west of Munich
 - tile_2 = north east of Munich
