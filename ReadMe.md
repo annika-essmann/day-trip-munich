@@ -112,34 +112,34 @@ The file is currently 159 MB large. To reduce the size, I deleted all unused col
 The following sub-sections describe the steps to create the file rail_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 #### Step: Add the closest train station
-First, I applied the algorithm 'Vector General - Join Attributes by Nearest' to the layer containing all rail stations. The algorithm joins two layers together by finding the closest feature.
+I applied the algorithm 'Vector General - Join Attributes by Nearest' to the layer containing all rail stations. The algorithm joins two layers together by finding the closest feature.
 
 **Why?** The file rail_network.parquet only contains a network, not the train stations. Metaphorically speaking, when a train runs along this network it just stops after one hour; but there isn't necessarily a train station to get off. The algorithm 'Vector General - Join Attributes by Nearest' finds the next train station. 
 
 I passed the following parameters, amongst others, to the algorithm:
-- **Input 1**: rail points containing all train stations
+- **Input 1**: layer containing all train stations
 - **Input 2**: rail_network.parquet
 - **Maximum distance**: 5km; to find the next train station within a 5 km radius of the rail network
 
 #### Step: Find rail stations with at least one hotel
-Second, I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
+I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
 
 **Why?** I want to find the rail stations where there is at least one hotel within a 5km radius. 
 
 I passed the following parameters, amongst others, to the algorithm: 
-- **Extract features from**: the file rail_network.parquet
-- **Comparison with**: all_hotel.osm
+- **Extract features from**: rail_network.parquet
+- **Comparison with**: all_hotel.osm, the original data pulled from the API
 - **Where the features are within**: 5km
 
 #### Step: Create layer with only one train station in Munich
-Third, I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
+I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
 "osm_id"=237680533<br>
-**Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm wouldn't work. 
+**Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm doesn't work. 
 
 #### Step: Calculate the distance between rail end points and Munich
-Fourth, I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with a distance between two points.
+I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with the distance between two points.
 
-**Why?** In the final file rail_end.gpkg I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information for this filter.
+**Why?** Later, I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information to do that.
 
 I passed the following parameters, amongst others, to the algorithm: 
 - **Source**: the layer that contains the train stations with at least one hotel within a 5km radius
@@ -147,12 +147,12 @@ I passed the following parameters, amongst others, to the algorithm:
 **Info**: The column with the distance was added to the layer with the train stations. 
 
 #### Step: Insert labels for the rail end points
-Finally, I filtered the layer with the train stations to display all stations that are more than 40km away from Munich by applying the following SQL WHERE statement:<br>
+I filtered the layer with the train stations to display all stations that are more than 40km away from Munich by applying the following SQL WHERE statement:<br>
 "HubDist">40
 
-Then, I inserted the labels for the train stations, and wrote down manually each station that sits at the end of a rail line.
+Then, I inserted the labels for the train stations, and manually wrote down each station at the end of a rail line.
 
-**Why?** I didn't find a means to extract the rail end points because their distance from Munich varies quite a bit. So I couldn't apply an algorithm like 'Vector Selection - Extract within distance'. Filtering and manually selecting the train stations was more efficient given the small data set.
+**Why?** I didn't find a means to extract the rail end points because their distance from Munich varies quite a bit. So, I couldn't apply an algorithm like 'Vector Selection - Extract within distance'. Filtering and manually selecting the train stations was more efficient given the small data set.
 
 As a last step, I changed the filter to the following SQL WHERE statement:<br>
 "name" IN ('Baar-Ebenhausen', 'Landshut (Bay) Hbf', 'Mühldorf (Oberbay)', 
