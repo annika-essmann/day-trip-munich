@@ -1,7 +1,7 @@
 # Data exploration of map data to find potential travel destinations from Munich
 
 ## Executive summary
-In my project I explored the question which cities can be reached from Munich within one hour and which have at least one hotel. 
+In my project I explored which cities can be reached from Munich within one hour and which have at least one hotel. 
 
 To answer this question, I first pulled data from the OpenStreetMap Overpass API. Specifically, I requested information on the rail network, train stations and hotels around Munich. 
 
@@ -13,7 +13,7 @@ My exploration resulted in 21 destinations that I could travel to, for example B
 I started this project without having ever worked with geospatial data, the Overpass Query Language, or the software QGIS before. Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
 ## Starting point
-This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin. However, this website mostly features bigger cities as destinations, for example it only suggests Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
+This project is inspired by the website [Chrono Trains] (https://www.chronotrains.com) which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin. However, this website mostly features bigger cities as destinations, for example it only suggests Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
 
 So, I asked myself: If I wanted to do a day or weekend trip for which I wanted to spend one hour on the train: Which destinations can I reach? This question was the starting point of my work.
 
@@ -23,7 +23,7 @@ Parameters:
 - **Travel speed**: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
 - **Destinations**: must have at least one hotel which I regarded not only as an accomodation option in case of a weekend trip, but also as a proxy for potential tourist attractions nearby
 
-## Methods: Tools
+## Applied Tools
 I used the following API, languages and software to complete this project: 
 - **OpenStreetMap Overpass API**: to access the geo-spatial data needed
 - **Overpass Query Language (OQL)**: to write the query that pulls the data from the API
@@ -34,7 +34,7 @@ I used the following API, languages and software to complete this project:
 - **git**: to track changes and upload the project to GitHub
 - **Visual Studio Code**: to handle git and edit mark down files
 
-## Methods: Steps taken and challenges solved 
+## Steps taken and challenges solved 
 In this section, I describe in detail and chronologically which methods I applied. 
 
 ### Define map area
@@ -83,11 +83,12 @@ I used the algorithm 'Vector Geometry - Snap Geometries' to Layer from the QGIS 
 The following paragraphs describe the steps I undertook to create the file rail_start.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
-"name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
+"name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'
+
 **Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer serves as this starting point; it contains 33 stops in total, one for every platform. 
 
 ### Create the file rail_network.parquet
-The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz. This file represents the heart of my analysis.
+The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 #### Map the reachable rail network
 I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGIS Processing Toolbox. It answers the question: Which points can I travel to by train within one hour from Munich? I passed the following parameters, amongst others, to the algorithm: 
@@ -123,7 +124,8 @@ I passed the following parameters, amongst others, to the algorithm:
 
 #### Create layer with only one train station in Munich
 I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
-"osm_id"=237680533<br>
+"osm_id"=237680533
+
 **Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm doesn't work. 
 
 #### Calculate the distance between rail end points and Munich
