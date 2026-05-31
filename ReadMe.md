@@ -13,15 +13,15 @@ My exploration resulted in 21 destinations that I could travel to, for example B
 I started this project without having ever worked with geospatial data, the Overpass Query Language, or the software QGIS before. Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
 ## Starting point
-This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin. However, this website mostly features bigger cities as destinations, and the filter only allows for a travel time between one and eight hours. One example: The website only shows Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
+This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin. However, this website mostly features bigger cities as destinations, for example it only suggests Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
 
-So, I asked myself: If I wanted to do a day or weekend trip for which I wanted to spend less than one hour on the train: Which destinations can I reach? This question was the starting point of my work.
+So, I asked myself: If I wanted to do a day or weekend trip for which I wanted to spend one hour on the train: Which destinations can I reach? This question was the starting point of my work.
 
 Parameters: 
 - **Origin**: Munich central station because that's where I live
 - **Travel time**: max. one hour
 - **Travel speed**: 80km/h because it is more likely to take a regional train in this scenario which travels on average between 70km/h and 90km/h [1]
-- **Destinations**: must have a train station and must have at least one hotel in case I want to spend the night
+- **Destinations**: must have at least one hotel which I regarded not only as an accomodation option in case of a weekend trip, but also as a proxy for potential tourist attractions nearby
 
 ## Methods: Tools
 I used the following API, languages and software to complete this project: 
