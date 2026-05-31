@@ -37,7 +37,7 @@ I used the following API, languages and software to complete this project:
 ## Methods: Steps taken and challenges solved 
 In this section, I describe in detail and chronologically which methods I applied. 
 
-### Step: Define map area
+### Define map area
 My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). So, if I take Munich as the focal point of the map, then I have the following coordinates in latitude and longitude: 
 - **Munich**: 48.1833728, 11.5939383
 - **Coordinates for the map**: 47.1833728, 10.5939383, 49.1833728, 12.5939383 (south, west, north, east)<br>
@@ -53,10 +53,10 @@ I used latitude and longitude because they were an effective means to define the
 I also added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
 See a visualisation in tile_numbering.pdf
 
-### Step: Pull map data
+### Pull map data
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail network and once for the hotels. The documentation of the OQL queries can be found in osm_overpass_api_queries.md 
 
-### Step: Combine map tiles
+### Combine map tiles
 By using osmconvert, I merged the data of the four tiles together. The result are two files, the file all_rail.osm contains the rail network; the file all_hotel.osm contains the hotels. In the following, I refer to the data of these files as map data. The documentation of the applied commands can be found in osmconvert_commands.md
 
 ### Challenge: Show all necessary tags
@@ -64,44 +64,44 @@ By using osmconvert, I merged the data of the four tiles together. The result ar
 **Reason**: The OSM driver in QGIS uses a certain way of formatting to process tags.<br>
 **Solution**: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
-### Step: Check for duplicates 
+### Check for duplicates 
 I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors.<br>
 **Why?** I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
-### Step: Reproject map data to correct EPSG code
+### Reproject map data to correct EPSG code
 QGIS imported the map data with the EPSG code 4326 which measures distances in latitude and longitude. However, the raster data I used has the EPSG code 25832 which measures distances in meters. To align the map data, I reprojected it to the EPSG code 4326 in QGIS which means I exported it as a new file with the correct code.
 
-### Step: Filter only for train stations
+### Filter only for train stations
 QGIS displays the rail data as a line layer (the network) and a point layer (the stations). However, the point layer also includes all signaling posts. To remove this noise, I filtered the layer with the SQL WHERE statement:<br>
 “railway” IN(‘stop’) AND “train“ IN(‘yes’). 
 
-### Step: Snap geometries to layer
+### Snap geometries to layer
 I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
-### Step: Create the file rail_start.gpkg
+### Create the file rail_start.gpkg
 The following paragraphs describe the steps I undertook to create the file rail_start.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
 "name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
 **Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer serves as this starting point; it contains 33 stops in total, one for every platform. 
 
-### Step: Create the file rail_network.parquet
+### Create the file rail_network.parquet
 The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz. This file represents the heart of my analysis.
 
-#### Step: Map the reachable rail network
+#### Map the reachable rail network
 I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGIS Processing Toolbox. It answers the question: Which points can I travel to by train within one hour from Munich? I passed the following parameters, amongst others, to the algorithm: 
 - **Starting point**: rail_start.gpkg
 - **Travel time**: max. one hour
 - **Travel speed**: 80 km/h; regional trains travel between 70-90km/h [1]; for good measure I chose the middle
 
-#### Step: Clean up the file
-The file is currently 159 MB large. To reduce the size, I deleted all unused columns and save the file in the binary format parquet. 
+#### Clean up the file
+The file is currently 159 MB large. To reduce the size, I deleted all unused columns and saved the file in the binary format parquet. 
 
-### Step: Create the file rail_end.gpkg
+### Create the file rail_end.gpkg
 The following sub-sections describe the steps to create the file rail_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
-#### Step: Add the closest train station
+#### Add the closest train station
 I applied the algorithm 'Vector General - Join Attributes by Nearest' to the layer containing all rail stations. The algorithm joins two layers together by finding the closest feature.
 
 **Why?** The file rail_network.parquet only contains a network, not the train stations. Metaphorically speaking, when a train runs along this network it just stops after one hour; but there isn't necessarily a train station to get off. The algorithm 'Vector General - Join Attributes by Nearest' finds the next train station. 
@@ -111,7 +111,7 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Input 2**: rail_network.parquet
 - **Maximum distance**: 5km; to find the next train station within a 5 km radius of the rail network
 
-#### Step: Find rail stations with at least one hotel
+#### Find rail stations with at least one hotel
 I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
 
 **Why?** I want to find the rail stations where there is at least one hotel within a 5km radius. 
@@ -121,12 +121,12 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Comparison with**: all_hotel.osm, the original data pulled from the API
 - **Where the features are within**: 5km
 
-#### Step: Create layer with only one train station in Munich
+#### Create layer with only one train station in Munich
 I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
 "osm_id"=237680533<br>
 **Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm doesn't work. 
 
-#### Step: Calculate the distance between rail end points and Munich
+#### Calculate the distance between rail end points and Munich
 I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with the distance between two points.
 
 **Why?** Later, I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information to do that.
@@ -136,7 +136,7 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Hub**: the layer with only one train station in Munich <br>
 **Info**: The column with the distance was added to the layer with the train stations. 
 
-#### Step: Insert labels for the rail end points
+#### Insert labels for the rail end points
 I filtered the layer with the train stations to display all stations that are more than 40km away from Munich by applying the following SQL WHERE statement:<br>
 "HubDist">40
 
@@ -152,10 +152,10 @@ As a last step, I changed the filter to the following SQL WHERE statement:<br>
 'Türkheim (Bayern)', 'Bobingen', 'Merching', 
 'Kutzenhausen', 'Langweid (Lech)', 'Augsburg Hauptbahnhof')
 
-#### Step: Clean the file
+#### Clean the file
 The algorithm 'Vector General - Join Attributes by Nearest' created a lot of duplicates which I cleaned up by employing the algorithm 'Fix Geometry - Delete Duplicate Geometries'. I also manually deleted all rows with a duplicated osm_id which resulted in 21 rows - exactly the train stations I filtered for in the previous step.
 
-### Step: Create the file hotel_at_end.gpkg
+### Create the file hotel_at_end.gpkg
 The following sub-sections describe the steps to create the file hotel_at_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 I ran the algorithm 'Vector Selection - Extract within Distance' which creates a new layer that only contains features from the input layer that meet a certain condition.
@@ -167,7 +167,7 @@ I passed the following parameters, amongst others, to the algorithm:
 - **By comparing to**: rail_end.gpkg
 - **Where the features are within**: 5km
 
-### GenAI usage
+## GenAI usage
 In this project, I used ChatGPT (GPT-5.3 and GPT-5.5) and GreenPT (Main) as a project tutor. The tool helped me to understand: 
 - the syntax of the Overpass Query Language,
 - new concepts like EPSG codes, 
