@@ -105,6 +105,9 @@ I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGI
 - **Travel time**: max. one hour
 - **Travel speed**: 80 km/h; regional trains travel between 70-90km/h [1]; for good measure I chose the middle
 
+#### Step: Clean up the file
+The file is currently 159 MB large. To reduce the size, I deleted all unused columns and save the file in the binary format parquet. 
+
 #### Step: Add the closest train station
 Next, I applied the algorithm 'Vector General - Join Attributes by Nearest' to the reachable rail network that I have just created (see section Step: Map the reachable rail network). The algorithm joins two layers together by finding the closest feature.
 
@@ -163,7 +166,7 @@ Finally, I changed the filter to the following SQL WHERE statement:<br>
 'Türkheim (Bayern)', 'Bobingen', 'Merching', 
 'Kutzenhausen', 'Langweid (Lech)', 'Augsburg Hauptbahnhof')
 
-#### Data cleaning
+#### Step: Clean the layer with the rail end points
 Algorithm Fix Geometry – Delete duplicate geometries
 -	Input: V2.5_joined_layer_hotels_5km_distance_only_end
 -	Resulting layer: 
