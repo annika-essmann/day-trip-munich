@@ -132,22 +132,19 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Comparison with**: all_hotel.osm
 - **Where the features are within**: 5km
 
-#### Create layer with only one train station in Munich Only one starting point München tief
+#### Step: Create layer with only one train station in Munich
 Second, I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
 "osm_id"=237680533<br>
-**Why?** For the algorithm I want to apply next, I need to have only one starting point - otherwise the algorithm wouldn't work. 
+**Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm wouldn't work. 
 
 #### Distance to nearest hub
-Algorithm Vector analysis – Distance to nearest hub (point) 
--	Why? To get a column with distance in km from München Hauptbahnhof (tief) to all rail points in the layer V2.5_joined_layer_hotels_5km 
-- Why? because I want to filter for this distance later, so that I only have the rail points at the end of the network left 
+Third, I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with a distance between two points.
 
--	all railway stations with close hotels
--	Source points layer: V2.5_joined_layer_hotels_5km 
--	because the algorithm only searches for the nearest points when starting at the source points layer – but I’m looking at the furthest points from Munich
--	Destination hubs layer: V2.4_rail_points_after_snap_point_A_munich_only (tief)
--	Hub layer name attribute: osm_id
--	Measurement: km
+**Why?** In the final file rail_end.gpkg I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information for this filter.
+
+I passed the following parameters, amongst others, to the algorithm: 
+- **Source**: the layer that contains the train stations with at least one hotel within a 5km radius
+- **Hub**: the layer with only one train station in Munich
 
 #### Layer only with the rail points at the end
 Copy and filter: V2.5_joined_layer_hotels_5km_distance 
