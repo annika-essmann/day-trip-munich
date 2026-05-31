@@ -210,32 +210,14 @@ I started my project with the question: Which (small) cities can I reach within 
 - Langweid (Lech)
 - Augsburg
 
-## Next steps 
-address limitations, measure XYZ for more insights 
+## Limitations and further usage
+To simplify my analysis, I only included hotels and disregarded other accomodation types like camping grounds, guest houses or hostels. Adding these could enlarge the amount of possible destinations.
 
-Business case: muenchen.de gibt auch Tipps für Ausflüge im Münchner Umland. Wie viele Destinationen gibt es? Wie lange dauert die Zugfahrt? Service: Liste der Städtenamen und mögliche Hotels. Basis für einen Service-Post.
+Also, the analysis could be further divided into destinations for a day trip and a weekend trip. For the former, I don't need a hotel, but potential tourist attractions such as museums or hiking trails. This would certainly result in different destinations.
 
-Add a regional section here
-https://www.chronotrains.com
-https://www.bahn.de/angebot/urlaub/bahnreisen/summerrail 
+Since my project focused on data exploration, I didn't do a full deployment of my results, e.g. in an app like Streamlit. I regarded a list and an image as sufficient because results like these are usually used as an input for a deeper analysis that then merits a full deployment. 
 
-
--	Include other accomodation types, merge into one layer together with hotels
--	“tourism”=”alpine_hut”
--	“tourism”=”camp_site”
--	“tourism”=”caravan_site”
--	“tourism”=”chalet”
--	“tourism”=”guest_house”
--	“tourism”=”hostel”
--	“tourism”=”motel”
--	Include attractions to visit, as a new layer
--	“tourism”=gallery”
--	“tourism”=”museum”
--	“tourism”=”theme_park”
--	“tourism”=”viewpoint”
--	“tourism”=”zoo”
-
-mark Streamlit as potential next steps, why not done: this is an exploration > list is sufficient for the start, conserving hours
+Yet, these results can also stand on their own and could serve as an addition to the list displayed on https://www.chronotrains.com. Also, these 21 destinations might be used for a service post on the website https://www.muenchen.de/en/home which also recommends travel destinations in Munich's vicinity. 
 
 ## Credits 
 Copy the current status of the credits.md file here
