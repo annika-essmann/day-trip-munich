@@ -182,11 +182,33 @@ In this project, I used ChatGPT (GPT-5.3 and GPT-5.5) and GreenPT (Main) as a pr
 - the syntax of the Overpass Query Language,
 - new concepts like EPSG codes, 
 - the software osmconvert and QGIS. 
-As a rule of thumb, when I received an error message in a program or contemplated the next step in my analysis, I thought about it and researched myself for 30-60min before passing a question to the ChatGPT or GreenPT.
+As a rule of thumb, when I received an error message in a program or contemplated the next step in my analysis, I thought about it and researched myself for 30-60min before passing a question to ChatGPT or GreenPT.
 
 See details in the file genai_usage.md
 
 ## Results 
+I started my project with the question: Which (small) cities can I reach within one hour from Munich? The answer: I could travel to 21 different (small) cities, namely: 
+- Baar-Ebenhausen
+- Landshut (Bay)
+- Mühldorf (Oberbay)
+- Jettenbach
+- Bad Endorf (Oberbay)
+- Flintsbach
+- Bayrischzell
+- Tegernsee
+- Gaißach
+- Wolfratshausen
+- Kochel
+- Murnau
+- Herrsching
+- Schongau
+- Landsberg (Lech)
+- Türkheim (Bayern)
+- Bobingen
+- Merching
+- Kutzenhausen
+- Langweid (Lech)
+- Augsburg
 
 ## Next steps 
 address limitations, measure XYZ for more insights 
