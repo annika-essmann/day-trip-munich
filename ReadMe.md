@@ -220,7 +220,15 @@ Since my project focused on data exploration, I didn't do a full deployment of m
 Yet, these results can also stand on their own and could serve as an addition to the list displayed on https://www.chronotrains.com. Also, these 21 destinations might be used for a service post on the website https://www.muenchen.de/en/home which also recommends travel destinations in Munich's vicinity. 
 
 ## Credits 
-Copy the current status of the credits.md file here
+**Map data**: 
+OpenStreetMap: https://www.openstreetmap.org/copyright 
+
+**Raster**: 
+© GeoBasis-DE / BKG (2026) dl-de/by-2-0
+BKG: https://www.bkg.bund.de/
+dl-de/by-2-0: https://www.govdata.de/dl-de/by-2-0
+
+See details in credits.md
 
 ## Sources
 [1] https://en.wikipedia.org/wiki/Regional-Express 
