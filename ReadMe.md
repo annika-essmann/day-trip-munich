@@ -65,7 +65,7 @@ By using osmconvert, I merged the data of the four tiles together. The result ar
 **Solution**: I changed the settings how an osm file is imported directly in the osmconf.ini file. For example, I added the tags "railway" (values: stop or signal) and "train" (values: yes or no) as standard columns. The explanations under 'Step: Filter only for train stations' show why this is relevant.
 
 ### Check for duplicates 
-I ran the algorithm Check Geometry - Duplicated Geometry from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors.<br>
+I ran the algorithm 'Check Geometry - Duplicated Geometry' from the QGIS Processing Toolbox. It reports any duplicated geometries in a vector layer as errors.<br>
 **Why?** I used an overlap for tile 1 and 3 in the original map data, and osmconvert normally eliminates all duplicates when merging files. With this algorithm I verified that. 
 
 ### Reproject map data to correct EPSG code
@@ -76,7 +76,7 @@ QGIS displays the rail data as a line layer (the network) and a point layer (the
 “railway” IN(‘stop’) AND “train“ IN(‘yes’). 
 
 ### Snap geometries to layer
-I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
+I used the algorithm 'Vector Geometry - Snap Geometries' to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
 ### Create the file rail_start.gpkg
