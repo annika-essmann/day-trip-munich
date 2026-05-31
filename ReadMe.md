@@ -1,7 +1,5 @@
 # Data exploration of map data to find potential travel destinations from Munich
 
-![image test] (export\result_destinations_300dpi_clipped.png)
-
 ## Executive summary
 In my project I explored which cities can be reached from Munich within one hour and which have at least one hotel. 
 
