@@ -90,12 +90,12 @@ I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Pr
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
 ### Creating the file rail_start
+The following sub-sections describe the steps I undertook to create the file rail_start that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 #### New layer with Munich as starting point
--	Copy V2.4_rail_points_after_snap
--	to define a new point layer only with München Hauptbahnhof
--	Filter for "name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'
-- result: V2.4_rail_points_after_snap_point_A_munich
+I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
+"name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
+**Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer only containing Munich central station is the starting point.
 
 ### Creating the file rail_network
 
