@@ -89,15 +89,16 @@ QGIS displays the rail data as a line layer (the network) and a point layer (the
 I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
-### Creating the file rail_start
-The following sub-sections describe the steps I undertook to create the file rail_start that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
+### Creating the file rail_start.gpkg
+The following sub-section describes the steps I undertook to create the file rail_start.gpkg that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 #### New layer with Munich as starting point
 I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
 "name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
 **Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer only containing Munich central station is the starting point.
 
-### Creating the file rail_network
+### Creating the file rail_network.parquet
+The following sub-sections describe the steps to create the file rail_network.parquet that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
 #### Service area
 -	algorithm Network Analysis – Service Area (from layer) from QGIS processing toolbox
