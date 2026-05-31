@@ -119,15 +119,18 @@ With this step, I created the final file rail_network.parquet which I saved in t
 
 **Downside**: In the end, the algorithm created a lot of duplicates which I had to clean up afterwards.
 
-### Creating the file rail_end
+### Step: Create the file rail_end.gpkg
+The following sub-sections describe the steps to create the file rail_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
-#### Extract within distance
-Algorithm: Vector Selection – Extract within distance
--	Extract features from: V2.4_joined_layer… (because I want to create a new layer with these rail points under a certain condition)
--	By comparing to: V2.3_all_hotel_points (select by comparing to the hotel points)
--	Where the features are within: 5km (only select rail points from the joined_layer if there are hotel points within 5km range)
--	Resulting file, saved in V2\calculations
--	V2.5_joined_layer_hotels_5km
+#### Step: Find rail stations with at least one hotel
+First, I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
+
+**Why?** I want to find the rail stations where there is at least one hotel within a 5km radius. 
+
+I passed the following parameters, amongst others, to the algorithm: 
+- **Extract features from**: the file rail_network.parquet
+- **Comparison with**: all_hotel.osm
+- **Where the features are within**: 5km
 
 #### Only one starting point München tief
 Copy of layer V2.4_rail_points_after_snap_point_A_munich
