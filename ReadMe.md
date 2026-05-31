@@ -162,17 +162,8 @@ As a last step, I changed the filter to the following SQL WHERE statement:<br>
 'Türkheim (Bayern)', 'Bobingen', 'Merching', 
 'Kutzenhausen', 'Langweid (Lech)', 'Augsburg Hauptbahnhof')
 
-#### Step: Clean the layer with the rail end points
-Algorithm Fix Geometry – Delete duplicate geometries
--	Input: V2.5_joined_layer_hotels_5km_distance_only_end
--	Resulting layer: 
-V2.5_joined_layer_hotels_5km_distance_only_end_CLEAN
-
-Edit V2.5_joined_layer_hotels_5km_distance_only_end_CLEAN
--	Go to the attribute table
--	Delete manually all duplicate names 
--	Result: only 21 railway stations
-
+#### Step: Clean the file
+The algorithm 'Vector General - Join Attributes by Nearest' created a lot of duplicates which I cleaned up by employing the algorithm 'Fix Geometry - Delete Duplicate Geometries'. I also manually deleted all rows with a duplicated osm_id which resulted in 21 rows - exactly the train stations I filtered for in the previous step.
 
 ### Creating the file hotel_at_end
 
