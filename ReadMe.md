@@ -100,27 +100,24 @@ I copied the layer containing the rail points, e.g. train stations, and filtered
 The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz. This file represents the heart of my analysis.
 
 #### Step: Map the reachable rail network
-I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGIS Processing Toolbox. It answers the question: Which points can I travel to by train within one hour from Munich? I passed the following parameters to the algorithm: 
-- **Starting point**: rail_star.gpkg
+I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGIS Processing Toolbox. It answers the question: Which points can I travel to by train within one hour from Munich? I passed the following parameters, amongst others, to the algorithm: 
+- **Starting point**: rail_start.gpkg
 - **Travel time**: max. one hour
 - **Travel speed**: 80 km/h; regional trains travel between 70-90km/h [1]; for good measure I chose the middle
 
-#### Join layer by nearest
-Why? The reachable network just stopped after 80km, not necessarily at a train station
-to fix that: used this algo
-downside: a lot of duplicates that I had to clean up later
+#### Step: Add the closest train station
+Next, I applied the algorithm 'Vector General - Join Attributes by Nearest' to the reachable rail network that I have just created (see section Step: Map the reachable rail network). The algorithm joins two layers together by finding the closest feature.
 
--	Algorithm Vector General – Join Attributes by Nearest
--	Input layer 1: rail – points – after snap to nodes (because this contains the train stations)
--	Input layer 2: 80_1_Service area (lines) (because this is the reachable network by 80km/h for max. 1h, starting at München Hauptbahnhof
--	Layer 2 fields to copy: default – all 
--	Discard records (from input layer 1) which could not be joined (because I don’t want the train stations in my data set that can’t be reached) 
--	Joined field prefix: j_ (that means all column headers from input layer 2 have this prefix now)
--	Maximum nearest neighbors: default – 35
--	The algorithm didn’t work with the default 1 (probably because I’m looking for multiple nearest neighbors on each route)
--	Error message said: found 33 neighbors instead of 1
--	So I set the maximum to 35
--	Maximum distance: 5 km
+**Why?** The algorithm 'Network Analysis - Service Area (from layer)' which I used before just stopped after one hour travel time. So, metaphorically speaking the train just stopped on an open field, but there isn't necessarily a train station to get off. The algorithm 'Vector General - Join Attributes by Nearest' fixes this issue.
+
+I passed the following parameters, amongst others, to the algorithm:
+- **Input 1**: rail points containing all train stations
+- **Input 2**: the reachable rail network
+- **Maximum distance**: 5km; to find the next train station within 5km "after" the edges of the reachable network
+
+With this step, I created the final file rail_network.parquet which I saved in the binary format parquet to reduce the file's volume.
+
+**Downside**: In the end, the algorithm created a lot of duplicates which I had to clean up afterwards.
 
 ### Creating the file rail_end
 
