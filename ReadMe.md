@@ -108,25 +108,21 @@ I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGI
 #### Step: Clean up the file
 The file is currently 159 MB large. To reduce the size, I deleted all unused columns and save the file in the binary format parquet. 
 
-#### Step: Add the closest train station
-Next, I applied the algorithm 'Vector General - Join Attributes by Nearest' to the reachable rail network that I have just created (see section Step: Map the reachable rail network). The algorithm joins two layers together by finding the closest feature.
-
-**Why?** The algorithm 'Network Analysis - Service Area (from layer)' which I used before just stopped after one hour travel time. So, metaphorically speaking the train just stopped on an open field, but there isn't necessarily a train station to get off. The algorithm 'Vector General - Join Attributes by Nearest' fixes this issue.
-
-I passed the following parameters, amongst others, to the algorithm:
-- **Input 1**: rail points containing all train stations
-- **Input 2**: the reachable rail network
-- **Maximum distance**: 5km; to find the next train station within 5km "after" the edges of the reachable network
-
-With this step, I created the final file rail_network.parquet which I saved in the binary format parquet to reduce the file's volume.
-
-**Downside**: In the end, the algorithm created a lot of duplicates which I had to clean up afterwards.
-
 ### Step: Create the file rail_end.gpkg
 The following sub-sections describe the steps to create the file rail_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
+#### Step: Add the closest train station
+First, I applied the algorithm 'Vector General - Join Attributes by Nearest' to the layer containing all rail stations. The algorithm joins two layers together by finding the closest feature.
+
+**Why?** The file rail_network.parquet only contains a network, not the train stations. Metaphorically speaking, when a train runs along this network it just stops after one hour; but there isn't necessarily a train station to get off. The algorithm 'Vector General - Join Attributes by Nearest' finds the next train station. 
+
+I passed the following parameters, amongst others, to the algorithm:
+- **Input 1**: rail points containing all train stations
+- **Input 2**: rail_network.parquet
+- **Maximum distance**: 5km; to find the next train station within a 5 km radius of the rail network
+
 #### Step: Find rail stations with at least one hotel
-First, I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
+Second, I ran the algorithm 'Vector Selection - Extract within distance'. It creates a new layer that only contains features from the input layer that meet a certain condition.
 
 **Why?** I want to find the rail stations where there is at least one hotel within a 5km radius. 
 
@@ -136,12 +132,12 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Where the features are within**: 5km
 
 #### Step: Create layer with only one train station in Munich
-Second, I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
+Third, I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
 "osm_id"=237680533<br>
 **Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm wouldn't work. 
 
 #### Step: Calculate the distance between rail end points and Munich
-Third, I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with a distance between two points.
+Fourth, I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with a distance between two points.
 
 **Why?** In the final file rail_end.gpkg I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information for this filter.
 
@@ -158,7 +154,7 @@ Then, I inserted the labels for the train stations, and wrote down manually each
 
 **Why?** I didn't find a means to extract the rail end points because their distance from Munich varies quite a bit. So I couldn't apply an algorithm like 'Vector Selection - Extract within distance'. Filtering and manually selecting the train stations was more efficient given the small data set.
 
-Finally, I changed the filter to the following SQL WHERE statement:<br>
+As a last step, I changed the filter to the following SQL WHERE statement:<br>
 "name" IN ('Baar-Ebenhausen', 'Landshut (Bay) Hbf', 'Mühldorf (Oberbay)', 
 'Jettenbach', 'Bad Endorf (Oberbay)', 'Flintsbach', 'Bayrischzell', 
 'Tegernsee', 'Gaißach', 'Wolfratshausen', 'Kochel', 'Murnau', 
