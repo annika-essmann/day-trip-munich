@@ -94,7 +94,7 @@ The following paragraphs describe the steps I undertook to create the file rail_
 
 I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
 "name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
-**Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer only containing Munich central station is the starting point.
+**Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer serves as this starting point; it contains 33 stops in total, one for every platform. 
 
 ### Step: Create the file rail_network.parquet
 The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz. This file represents the heart of my analysis.
@@ -132,14 +132,10 @@ I passed the following parameters, amongst others, to the algorithm:
 - **Comparison with**: all_hotel.osm
 - **Where the features are within**: 5km
 
-#### Only one starting point München tief
-Copy of layer V2.4_rail_points_after_snap_point_A_munich
--	Filter only for one point München Hauptbahnhof (tief) 
--	"osm_id"=237680533
--	Why? So that I only have one starting point for the algorithm Vector analysis – Distance to nearest hub (point) 
--	Resulting layer: 
-V2.4_rail_points_after_snap_point_A_munich_only (tief) 
-
+#### Create layer with only one train station in Munich Only one starting point München tief
+Second, I copied the file rail_start.gpkg - which contains 33 stations - and filtered for only one station by applying the following SQL WHERE statement:<br>
+"osm_id"=237680533<br>
+**Why?** For the algorithm I want to apply next, I need to have only one starting point - otherwise the algorithm wouldn't work. 
 
 #### Distance to nearest hub
 Algorithm Vector analysis – Distance to nearest hub (point) 
