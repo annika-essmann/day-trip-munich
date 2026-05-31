@@ -89,29 +89,21 @@ QGIS displays the rail data as a line layer (the network) and a point layer (the
 I used the algorithm Vector Geometry - Snap Geometries to Layer from the QGIS Processing Toolbox. This snapped the rail points to the rail lines.<br>
 **Why?** Later, I want to use the rail data to make multiple calculations, e.g. run along the network to a certain station. This step prevents any errors, e.g. a station is not connected to the network.
 
-### Creating the file rail_start.gpkg
-The following sub-section describes the steps I undertook to create the file rail_start.gpkg that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
+### Step: Create the file rail_start.gpkg
+The following paragraphs describe the steps I undertook to create the file rail_start.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
-#### New layer with Munich as starting point
 I copied the layer containing the rail points, e.g. train stations, and filtered it for Munich central station by using the following SQL WHERE statement:<br>
 "name" LIKE 'München Hauptbahnhof%' OR "name" LIKE 'München Hbf%'<br>
 **Why?** To run the algorithm 'Network Analysis - Service Area (from layer)', I need to define a starting point. This new layer only containing Munich central station is the starting point.
 
-### Creating the file rail_network.parquet
-The following sub-sections describe the steps to create the file rail_network.parquet that is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
+### Step: Create the file rail_network.parquet
+The following sub-sections describe the steps to create the file rail_network.parquet which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz. This file represents the heart of my analysis.
 
-#### Service area
--	algorithm Network Analysis – Service Area (from layer) from QGIS processing toolbox
--	Vector layer representing network: rail – lines
--	Path type to calculate: fastest
--	Vector layer with start points: rail – points – after snap – point A Munich
--	Travel cost (time in hours): 1
--	Default direction: both directions
--	Default speed (km/h): 80 (because regional trains travel between 70-90km/h
--	Output in temporary layer: 
--	service area lines: path from point A Munich to point B 
--	service area (boundary nodes): every possible point B
-- Result: V2.4_80_1_service_area_boundary_nodes / lines
+#### Step: Map the reachable rail network
+I used the algorithm 'Network Analysis - Service Area (from layer)' from the QGIS Processing Toolbox. It answers the question: Which points can I travel to by train within one hour from Munich? I passed the following parameters to the algorithm: 
+- **Starting point**: rail_star.gpkg
+- **Travel time**: max. one hour
+- **Travel speed**: 80 km/h; regional trains travel between 70-90km/h [1]; for good measure I chose the middle
 
 #### Join layer by nearest
 Why? The reachable network just stopped after 80km, not necessarily at a train station
