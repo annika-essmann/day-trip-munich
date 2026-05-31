@@ -137,22 +137,25 @@ Second, I copied the file rail_start.gpkg - which contains 33 stations - and fil
 "osm_id"=237680533<br>
 **Why?** For the next algorithm, I need to have only one starting point - otherwise the algorithm wouldn't work. 
 
-#### Distance to nearest hub
+#### Step: Calculate the distance between rail end points and Munich
 Third, I used the algorithm 'Vector Analysis - Distance to nearest hub (point)' which creates a new layer that contains, amongst others, a new column with a distance between two points.
 
 **Why?** In the final file rail_end.gpkg I want to display the labels of the train stations at the end, but the current file contains all train stations. So, I want to filter for a certain distance to select those train stations, and the algorithm supplies me with the information for this filter.
 
 I passed the following parameters, amongst others, to the algorithm: 
 - **Source**: the layer that contains the train stations with at least one hotel within a 5km radius
-- **Hub**: the layer with only one train station in Munich
+- **Hub**: the layer with only one train station in Munich <br>
+**Info**: The column with the distance was added to the layer with the train stations. 
 
-#### Layer only with the rail points at the end
-Copy and filter: V2.5_joined_layer_hotels_5km_distance 
--	First for HubDistance > 40 km
--	So that the view is easier to work with
--	Insert labels so that I know the names of the railway stations
--	Manually write down each station at the end of each railway line
--	Change filter to 
+#### Step: Insert labels for the rail end points
+Finally, I filtered the layer with the train stations to display all stations that are more than 40km away from Munich by applying the following SQL WHERE statement:<br>
+"HubDist">40
+
+Then, I inserted the labels for the train stations, and wrote down manually each station that sits at the end of a rail line.
+
+**Why?** I didn't find a means to extract the rail end points because their distance from Munich varies quite a bit. So I couldn't apply an algorithm like 'Vector Selection - Extract within distance'. Filtering and manually selecting the train stations was more efficient given the small data set.
+
+Finally, I changed the filter to the following SQL WHERE statement:<br>
 "name" IN ('Baar-Ebenhausen', 'Landshut (Bay) Hbf', 'Mühldorf (Oberbay)', 
 'Jettenbach', 'Bad Endorf (Oberbay)', 'Flintsbach', 'Bayrischzell', 
 'Tegernsee', 'Gaißach', 'Wolfratshausen', 'Kochel', 'Murnau', 
@@ -160,6 +163,7 @@ Copy and filter: V2.5_joined_layer_hotels_5km_distance
 'Türkheim (Bayern)', 'Bobingen', 'Merching', 
 'Kutzenhausen', 'Langweid (Lech)', 'Augsburg Hauptbahnhof')
 
+#### Data cleaning
 Algorithm Fix Geometry – Delete duplicate geometries
 -	Input: V2.5_joined_layer_hotels_5km_distance_only_end
 -	Resulting layer: 
