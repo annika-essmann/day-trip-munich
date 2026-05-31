@@ -165,13 +165,17 @@ As a last step, I changed the filter to the following SQL WHERE statement:<br>
 #### Step: Clean the file
 The algorithm 'Vector General - Join Attributes by Nearest' created a lot of duplicates which I cleaned up by employing the algorithm 'Fix Geometry - Delete Duplicate Geometries'. I also manually deleted all rows with a duplicated osm_id which resulted in 21 rows - exactly the train stations I filtered for in the previous step.
 
-### Creating the file hotel_at_end
+### Step: Create the file hotel_at_end.gpkg
+The following sub-sections describe the steps to create the file hotel_at_end.gpkg which is saved in the folder mapdata and used as a layer in the QGIS project result_destinations.qgz.
 
-#### New hotel layer under a certain condition
-Algorithm: Vector Selection – Extract within distance
--	Extract features from: V2.3_all_hotel_points (because I want to create a new layer, only with hotels under a certain condition)
--	By comparing to: V2.5_joined_layer_hotels_5km_distance_only_end_clean (because I only want hotels that are within range of these railway stations)
--	Where the features are within: 5km 
+I ran the algorithm 'Vector Selection - Extract within Distance' which creates a new layer that only contains features from the input layer that meet a certain condition.
+
+**Why?** I want to obtain the hotels that are within a 5km radius of the rail end points. 
+
+I passed the following parameters, amongst others, to the algorithm: 
+- **Extract features from**: all_hotels.osm
+- **By comparing to**: rail_end.gpkg
+- **Where the features are within**: 5km
 
 ### GenAI usage
 In this project, I used ChatGPT (GPT-5.3 and GPT-5.5) and GreenPT (Main) as a project tutor. The tool helped me to understand: 
