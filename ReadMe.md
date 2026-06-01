@@ -9,6 +9,8 @@ Then, I analysed the data in the geographic information system software QGIS by 
 
 My exploration resulted in 21 destinations that I could travel to, for example Baar-Ebenhausen, Landshut (Bay) and Mühldorf (Oberbay). Since I limited my analysis by only looking at hotels, and thus disregarding other accomodation types, the amount of cities could be enlarged by adding further types such as guest houses or hostels.
 
+![A screenshot of a map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
+
 ## Context and gained skills
 I started this project without having ever worked with geospatial data, the Overpass Query Language, or the software QGIS before. Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
