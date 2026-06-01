@@ -237,7 +237,7 @@ Yet, these results can also stand on their own and could serve as an addition to
 [OpenStreetMap](https://www.openstreetmap.org/copyright)
 
 **Raster**<br>
-© GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
+© GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)
 
 See details in [credits.md](credits.md)
 

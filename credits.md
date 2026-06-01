@@ -4,12 +4,12 @@
 
 ### Information 
 For the files located in [mapdata/original](mapdata/original): 
-- **access**: the OpenStreetMap Overpass API on 30 April 2026
-- **changes**: none
+- **Access**: the OpenStreetMap Overpass API on 30 April 2026
+- **Changes**: none
 
 For the files located in [mapdata](mapdata): 
-- **basis**: files in [mapdata/original](mapdata/original)
-- **changes**: made in QGIS by using algorithms of the QGIS Processing Toolbox, details see [ReadMe](ReadMe.md)
+- **Basis**: files in [mapdata/original](mapdata/original)
+- **Changes**: made in QGIS by using algorithms of the QGIS Processing Toolbox, details see [ReadMe](ReadMe.md)
 
 ### Credits
 [OpenStreetMap](https://www.openstreetmap.org/copyright)<br>
@@ -22,8 +22,13 @@ on 30 April 2026<br>
 
 ## Raster
 
+### Information
+For the files located in [raster](raster): 
+- **Access**: on 30 April 2026<br>
+- **Changes**: reduced the transparency to 65%
+
 ### Credits 
-© GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) 
+© GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)
 
 ### Currentness
 **Complete editing**: 31 Dec 2022<br>
