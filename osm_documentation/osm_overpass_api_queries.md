@@ -14,7 +14,7 @@ See tile_numbering.pdf for details.
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail data and once for the hotels. That way I could establish separate layers in the software QGIS.
 
 ## QUERY TILE 1 - RAIL
-The following code serves as an example for the rail data pulled from tiles 2-4. Only the bounding box (bbox) changed. The rest of the code stayed the same. 
+The following code serves as an example for the *rail* data pulled from tiles 2-4. Only the bounding box (bbox) changed. The rest of the code stayed the same. 
 
 `/* Timeout not included, default 180 seconds.*/`
 
@@ -31,13 +31,14 @@ The following code serves as an example for the rail data pulled from tiles 2-4.
 `out geom;`
 
 ## QUERY TILE 1 - HOTEL
+The following code serves as an example for the *hotel* data pulled from tiles 2-4. Only the bounding box (bbox) changed. The rest of the code stayed the same. 
 
-/* Timeout not included, default 180 seconds.*/
+`/* Timeout not included, default 180 seconds.*/`
 
-/*coordinates for tile_1 = Munich north west*/
-[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383];
+`/*coordinates for tile_1 = Munich north west*/`<br>
+`[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383];`
 
-node["tourism"="hotel"];
+`node["tourism"="hotel"];`
 
-/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/
-out geom;
+`/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/`<br>
+`out geom;`
