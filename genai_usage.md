@@ -72,8 +72,10 @@ Read all the following sentences. Then answer my question. I have a raster layer
 ### Help with error messages
 I'm getting an error message on this statement. What I want to achieve: An `OR` logic for the last statement: 
 So:<br>
-`["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] );` <br>
-`# Original statement [timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;`
+`["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] );`
+
+# Original statement <br>
+`[timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;`
 
 ### Help with project scope
 How many GB of data can QGIS process at once? In this context: What about data formats like *GEOjson*, *GPX*, *KML*, *OSM raw* data?
