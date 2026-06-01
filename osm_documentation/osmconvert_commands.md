@@ -16,7 +16,7 @@ I utilised osmconvert to merge the following files which contain the original da
 
 --> all_hotel.osm
 
-The result of these merges are stored in the folder [mapdata/original](mapdata/original). 
+The result of these merges are stored in the folder [mapdata/original](/mapdata/original). 
 
 ## Context: Tile numbering
 I divided the map - so the surroundings of Munich - into four tiles. The division moves clockwise like this:  
