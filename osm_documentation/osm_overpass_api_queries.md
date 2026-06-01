@@ -15,19 +15,19 @@ To make the analysis of the map data easier later on, I pulled data from one til
 
 ## QUERY TILE 1 - RAIL
 
-`/* Timeout not included, default 180 seconds.*/
+`/* Timeout not included, default 180 seconds.*/`
 
-/*coordinates for tile_1 = Munich north west*/
-[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383];
+`/*coordinates for tile_1 = Munich north west*/`
+`[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383];`
 
-way["railway"="rail"];
+`way["railway"="rail"];`
 
-/*added by auto repair*/
-(._;>;);
-/*end of auto repair*/
+`/*added by auto repair*/`
+`(._;>;);`
+`/*end of auto repair*/`
 
-/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/
-out geom;`
+`/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/`
+`out geom;`
 
 ## QUERY TILE 1 - HOTEL
 
