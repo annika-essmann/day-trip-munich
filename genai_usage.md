@@ -1,7 +1,7 @@
 # GenAI as a project tutor 
 I used GenAI, more specifically, ChatGPT and GreenPT, for the following reasons: 
-- as a faster search engine because my questions had multiple variables that would have been difficult to convert for a search engine, even with operators like AND.
-- as a tutor - but not as an easy way to progress - that I asked for help when I didn't find an answer myself after 30-60min.  
+- **as a faster search engine** because my questions had multiple variables that would have been difficult to convert for a search engine, even with operators like `AND`.
+- **as a tutor** - but not as an easy way to progress - that I asked for help when I didn't find an answer myself after 30-60min.  
 
 ## Used models
 [ChatGPT](https://chatgpt.com/) (until 2 Mai 2026): GPT-5.3 and GPT-5.5
