@@ -15,7 +15,7 @@ My exploration resulted in 21 destinations that I could travel to, for example B
 **Details**: [credits.md](credits.md)
 
 ## Context
-I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools.](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)
+I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools]).(https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)
 
 Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
@@ -41,6 +41,7 @@ I used the following API, languages and software to complete this project:
 - **QGIS, a geographic information system software**: to analyse and visualise the data
 - **Structured Query Language (SQL)**: to filter the data in QGIS
 - **git**: to track changes and upload the project to GitHub
+- **mark down**: to write a well-layouted ReadMe file
 - **Visual Studio Code**: to handle git and edit mark down files
 
 ## Steps taken and challenges solved 
