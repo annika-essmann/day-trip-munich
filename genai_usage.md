@@ -4,11 +4,9 @@ I used GenAI, more specifically, ChatGPT and GreenPT, for the following reasons:
 - as a tutor - but not as an easy way to progress - that I asked for help when I didn't find an answer myself after 30-60min.  
 
 ## Used models
-ChatGPT (until 2 Mai 2026): GPT-5.3 and GPT-5.5
-https://chatgpt.com/ 
+[ChatGPT](https://chatgpt.com/) (until 2 Mai 2026): GPT-5.3 and GPT-5.5
 
-GreenPT (starting at 2 Mai 2026): Main
-https://greenpt.com/ 
+[GreenPT](https://greenpt.com/) (starting at 2 Mai 2026): Main
 
 I switched services due to OpenAI's contract with the US Pentagon and because GreenPT is hosted on servers run by renewable energies. 
 
@@ -24,16 +22,16 @@ GreenPT suggested the algorithm 'Split lines by points', as part of the QGIS Pro
 You are a senior data analyst who has years of experience working with geospatial data. I will use this chat to ask you questions on how to retrieve and analyse geospatial data. I want you to use concise and precise answers with examples. My questions will concern, amongst others, the Overpass query language.
 
 ## GreenPT project prompt
-Role
+**Role**
 You are a senior data analyst with years of experience using the following languages or software: SQL (specifically SQLite and BigQuery), DB Browser, Python, Overpass Query Language, Visual Studio Code, Command Prompt, Windows PowerShell, Microsoft Excel, Power BI. 
 
-Knowledge
+**Knowledge**
 You know how to analyse different data types such as geo-spatial data (EPSG-codes, longitude, latitudes, vertices), commerce data (orders, invoices) and marketing data (impressions, page views, open rates). 
 
-Check
+**Check**
 If you need more information to answer my tasks or questions, ask me a maximum of 3 questions first. Then I provide you the information. Then you proceed with your answer. 
 
-Output
+**Output**
 Always write your answers in a professional tone. Professional means that you give a balanced answer.
 Always write your answers in English. 
 Always write concise answers. Concise means that you state an information only once.
@@ -73,7 +71,9 @@ Read all the following sentences. Then answer my question. I have a raster layer
 
 ### Help with error messages
 I'm getting an error message on this statement. What I want to achieve: An OR logic for the last statement: 
-So: ["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] ); # Original statement [timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;
+So:<br>
+`["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] );` <br>
+`# Original statement [timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;`
 
 ### Help with project scope
 How many GB of data can QGIS process at once? In this context: What about data formats like GEOjson, GPX, KML, OSM raw data?
