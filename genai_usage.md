@@ -74,7 +74,7 @@ I'm getting an error message on this statement. What I want to achieve: An `OR` 
 So:<br>
 `["tram"="no"] AND ( ["name"="Hauptbahnhof"] OR ["name"="Bahnhof"] );`
 
-# Original statement <br>
+Original statement <br>
 `[timeout:25] [bbox:{{bbox}}]; node["public_transport"="station"] ["railway"="station"] ["train"="yes"] ["subway"="no"] ["tram"="no"] ( ["name"="Hauptbahnhof"]; ["name"="Bahnhof"] ); out geom;`
 
 ### Help with project scope
