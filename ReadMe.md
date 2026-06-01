@@ -15,7 +15,7 @@ My exploration resulted in 21 destinations that I could travel to, for example B
 **Details**: [credits.md](credits.md)
 
 ## Context
-I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools]).(https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)
+I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)).
 
 Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
