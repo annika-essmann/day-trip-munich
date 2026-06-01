@@ -1,4 +1,4 @@
-# Documentation: Queries used in the OSM Overpass API
+# Documentation: Queries used in the API
 This document lists the queries which I used in the OpenStreetMap Overpass API to obtain the data listed in the folder mapdata/original. This data served as the basis to make calculations in the programme QGIS, a geographic information system software to analyse geospatial data. The result of these calculations are files in the folder mapdata. 
 
 ## Tile numbering
