@@ -205,28 +205,12 @@ As a rule of thumb, when I received an error message or contemplated the next st
 See details in the file [genai_usage.md](genai_usage.md)
 
 ## Results 
-I started my project with the question: Which (small) cities can I reach within one hour from Munich? The answer: I could travel to 21 different (small) cities, namely: 
-- Baar-Ebenhausen
-- Landshut (Bay)
-- Mühldorf (Oberbay)
-- Jettenbach
-- Bad Endorf (Oberbay)
-- Flintsbach
-- Bayrischzell
-- Tegernsee
-- Gaißach
-- Wolfratshausen
-- Kochel
-- Murnau
-- Herrsching
-- Schongau
-- Landsberg (Lech)
-- Türkheim (Bayern)
-- Bobingen
-- Merching
-- Kutzenhausen
-- Langweid (Lech)
-- Augsburg
+I started my project with the question: Which (small) cities can I reach within one hour from Munich? The answer: I could travel to 21 different (small) cities.
+
+![A screenshot of a map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
+**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
+**Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
+**Details**: [credits.md](credits.md)
 
 ## Limitations and further usage
 To simplify my analysis, I only included hotels and disregarded other accomodation types like camping grounds, guest houses or hostels. Adding these could enlarge the amount of possible destinations.
