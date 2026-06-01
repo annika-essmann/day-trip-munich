@@ -8,7 +8,7 @@ To reduce the volume of the data that I requested from the API, I divided the ma
 - **tile_3**: south east of Munich `[bbox:47.1833728, 11.5439383, 48.2333728, 12.5939383]`
 - **tile_4**: south west of Munich `[bbox: 47.1833728, 10.5939383, 48.1833728, 11.5939383]`
 
-See [tile_numbering.pdf](tile_numbering.pdf) for details.
+See [tile_numbering.pdf](/tile_numbering.pdf) for details.
 
 ## Tile content
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail data and once for the hotels. That way I could establish separate layers in the software QGIS.
