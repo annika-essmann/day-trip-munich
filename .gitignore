@@ -1,8 +1,6 @@
 tile_numbering.pptx
 personal_documentation.docx
 osmconvert.exe
-mapdata/rail_network.gpkg
-mapdata/rail_network.qmd
-export/result_destinations_300dpi_clipped_credits.png
-export/result_destinations_300dpi_clipped.png
-export/result_destinations_300dpi.png
+rail_network.gpkg
+rail_network.qmd
+export/
