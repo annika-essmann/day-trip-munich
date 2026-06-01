@@ -1,17 +1,19 @@
 # Documentation: Commands to use osmconvert
-This document describes the commands that I used in Windows PowerShell to handle osmconvert which "can be used to convert and process OpenStreetMap files." [1](https://github.com/annika-essmann/day-trip-munich/blob/main/osm_documentation/osmconvert_commands.md#sources) It doesn't have a real interface and is thus handled in the command line. 
+This document describes the commands that I used in Windows PowerShell to handle osmconvert which "can be used to convert and process OpenStreetMap files." [[1]](https://github.com/annika-essmann/day-trip-munich/blob/main/osm_documentation/osmconvert_commands.md#sources) It doesn't have a real interface and is thus handled in the command line. 
 
 I utilised osmconvert to merge the following files which contain the original data that I pulled from the OpenStreetMap Overpass API: 
 - tile1_rail.osm
 - tile2_rail.osm 
 - tile3_rail.osm 
-- tile4_rail.osm<br>
+- tile4_rail.osm
+
 --> all_rail.osm
 
 - tile1_hotel.osm 
 - tile2_hotel.osm 
 - tile3_hotel.osm 
-- tile4_hotel.osm<br>
+- tile4_hotel.osm
+
 --> all_hotel.osm
 
 The result of these merges are stored in the folder [mapdata/original](mapdata/original). 
