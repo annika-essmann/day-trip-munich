@@ -8,17 +8,17 @@ For the files located in [mapdata/original](mapdata/original):
 - **changes**: none
 
 For the files located in [mapdata](mapdata): 
-- **basis**: files in mapdata/original
+- **basis**: files in [mapdata/original](mapdata/original)
 - **changes**: made in QGIS by using algorithms of the QGIS Processing Toolbox, details see [ReadMe](ReadMe.md)
 
 ### Credits
-OpenStreetMap: https://www.openstreetmap.org/copyright<br>
+[OpenStreetMap](https://www.openstreetmap.org/copyright)<br>
 OpenStreetMap data is available under the Open Database License (ODbl)
 
 ### Currentness
 Accessed via the [OpenStreetMap Overpass API](https://overpass-turbo.eu/)<br>
 on 30 April 2026<br>
-**Documentation**: https://wiki.openstreetmap.org/wiki/Overpass_API 
+[Documentation](https://wiki.openstreetmap.org/wiki/Overpass_API) 
 
 ## Raster
 
