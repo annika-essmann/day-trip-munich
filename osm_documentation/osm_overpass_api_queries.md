@@ -3,10 +3,10 @@ This document lists the queries which I used in the OpenStreetMap Overpass API t
 
 ## Tile numbering
 To reduce the volume of the data that I requested from the API, I divided the map - so the surroundings of Munich - into four tiles. The division moves clockwise like this:  
-- **tile_1**: north west of Munich: [bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383]
-- **tile_2**: north east of Munich
-- **tile_3**: south east of Munich
-- **tile_4**: south west of Munich
+- **tile_1**: north west of Munich: *[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383]*
+- **tile_2**: north east of Munich: *[bbox:48.1833728, 11.5939383, 49.1833728, 12.5939383]*
+- **tile_3**: south east of Munich: *[bbox:47.1833728, 11.5439383, 48.2333728, 12.5939383]*
+- **tile_4**: south west of Munich: *[bbox: 47.1833728, 10.5939383, 48.1833728, 11.5939383]*
 
 See [tile_numbering.pdf](tile_numbering.pdf) for details.
 
