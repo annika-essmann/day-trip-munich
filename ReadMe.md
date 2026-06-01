@@ -14,8 +14,10 @@ My exploration resulted in 21 destinations that I could travel to, for example B
 **Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
 **Details**: [credits.md](credits.md)
 
-## Context and gained skills
-I started this project without having ever worked with geospatial data, the Overpass Query Language, or the software QGIS before. Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
+## Context
+I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools.](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)
+
+Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
 
 ## Starting point
 This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin.
@@ -30,7 +32,7 @@ So, I asked myself: If I wanted to spend one hour on the train: Which destinatio
 - **Travel speed**: 80km/h; because it is more likely to take a regional train in this scenario which travels on average between 70-90km/h [[1]](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#sources)
 - **Destinations**: must have at least one hotel; because it's not only an accomodation option, but also a proxy for tourist attractions
 
-## Applied Tools
+## Applied tools
 I used the following API, languages and software to complete this project: 
 - **OpenStreetMap Overpass API**: to access the geo-spatial data needed
 - **Overpass Query Language (OQL)**: to write the query that pulls the data from the API
