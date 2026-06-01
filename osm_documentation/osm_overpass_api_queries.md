@@ -3,10 +3,10 @@ This document lists the queries which I used in the OpenStreetMap Overpass API t
 
 ## Tile numbering
 To reduce the volume of the data that I requested from the API, I divided the map - so the surroundings of Munich - into four tiles. The division moves clockwise like this:  
-- **tile_1** = north west of Munich
-- **tile_2** = north east of Munich
-- **tile_3** = south east of Munich
-- **tile_4** = south west of Munich
+- **tile_1**: north west of Munich: [bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383]
+- **tile_2**: north east of Munich
+- **tile_3**: south east of Munich
+- **tile_4**: south west of Munich
 
 See tile_numbering.pdf for details. 
 
@@ -14,19 +14,20 @@ See tile_numbering.pdf for details.
 To make the analysis of the map data easier later on, I pulled data from one tile twice - once for the rail data and once for the hotels. That way I could establish separate layers in the software QGIS.
 
 ## QUERY TILE 1 - RAIL
+The following code serves as an example for the rail data pulled from tiles 2-4. Only the bounding box (bbox) changed. The rest of the code stayed the same. 
 
 `/* Timeout not included, default 180 seconds.*/`
 
-`/*coordinates for tile_1 = Munich north west*/`
+`/*coordinates for tile_1 = Munich north west*/`<br>
 `[bbox:48.1333728, 10.5939383, 49.1833728, 11.6439383];`
 
 `way["railway"="rail"];`
 
-`/*added by auto repair*/`
-`(._;>;);`
+`/*added by auto repair*/`<br>
+`(._;>;);`<br>
 `/*end of auto repair*/`
 
-`/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/`
+`/* I didn't use the output statement 'out skel' although this would have resulted in a lighter file because this wouldn't have included data lables which I needed later for my analysis.*/`<br>
 `out geom;`
 
 ## QUERY TILE 1 - HOTEL
