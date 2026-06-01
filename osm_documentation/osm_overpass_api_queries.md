@@ -1,12 +1,13 @@
-# Documentation: Queries used in the OpenStreetMap Overpass API
+# Documentation: Queries used in the OSM Overpass API
 This document lists the queries which I used in the OpenStreetMap Overpass API to obtain the data listed in the folder mapdata/original. This data served as the basis to make calculations in the programme QGIS, a geographic information system software to analyse geospatial data. The result of these calculations are files in the folder mapdata. 
 
 ## Tile numbering
 To reduce the volume of the data that I requested from the API, I divided the map - so the surroundings of Munich - into four tiles. The division moves clockwise like this:  
-- tile_1 = north west of Munich
-- tile_2 = north east of Munich
-- tile_3 = south east of Munich
-- tile_4 = south west of Munich
+- **tile_1** = north west of Munich
+- **tile_2** = north east of Munich
+- **tile_3** = south east of Munich
+- **tile_4** = south west of Munich
+
 See tile_numbering.pdf for details. 
 
 ## Tile content
