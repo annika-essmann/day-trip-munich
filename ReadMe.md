@@ -34,9 +34,9 @@ Now, having completed my data exploration I know 21 travel destinations around M
 **One last word on deployment:** Since my project focused on data exploration, I didn't deploy my results because information like this is used as an input for a deeper analysis that then merits a full deployment. 
 
 ![A map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
-$\color{#F6F6F6}{\text{**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
+<sub>**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
 **Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
-**Details**: [credits.md](credits.md)}$
+**Details**: [credits.md](credits.md)</sub>
 
 ## Applied tools
 I used the following API, languages and software to complete this project: 
