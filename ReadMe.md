@@ -44,8 +44,7 @@ I used the following API, languages and software to complete this project:
 - **mark down**: to write a well-layouted ReadMe file
 - **Visual Studio Code**: to handle git and edit mark down files
 
-## Steps taken and challenges solved 
-Summary here.
+See details in the file [methods.md](methods.md).
 
 ## GenAI usage
 In this project, I used ChatGPT (GPT-5.3 and GPT-5.5) and GreenPT (Main) as a project tutor. Amongst others, the tool helped me to understand: 
