@@ -3,7 +3,7 @@
 ## Context
 I started this project without having ever worked with geospatial data before. Neither did I know *any* of the 9 tools that I used, such as QGIS (see section [Applied tools](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools) for the full list). 
 
-**Thus, I'm a strong autodidact who learned the tools *and* completed this project in roughly 60 hours.**
+**This project shows: I'm a strong autodidact who learned the tools *and* completed this project in roughly 60 hours.**
 
 ## Research question
 I love to travel and I often use the website https://www.chronotrains.com. It allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin.
@@ -29,7 +29,7 @@ Though, this is only a very condensed version of my methods. Along the way, ther
 <img src="tile_numbering.png" alt="An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates." width="450" height=auto>
 
 ## Results
-Now, having completed my data exploration I know 21 travel destinations around Munich, for example Landshut (Bay). So, I will roughly need half a year to make every trip…I better reserve my trains now.
+Having completed my analysis, I now know 21 travel destinations around Munich, for example Landshut (Bay). So, I will roughly need half a year to make every trip… I better reserve my trains now.
 
 **One last word on deployment:** Since my project focused on data exploration, I didn't deploy my results because information like this is used as an input for a deeper analysis that then merits a full deployment. 
 
