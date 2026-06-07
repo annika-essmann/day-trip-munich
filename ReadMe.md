@@ -1,36 +1,44 @@
-# Data exploration of map data to find potential travel destinations from Munich
+# I found 21 travel destinations after teaching myself 9 tools to complete the analysis
 
-## Executive summary
-In my project I explored which cities can be reached from Munich within one hour and which have at least one hotel. 
+## Context
+I started this project without having ever worked with geospatial data before. Neither did I know *any* of the 9 tools that I used, such as QGIS (see section [Applied tools](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools) for the full list). 
 
-To answer this question, I first pulled data from the OpenStreetMap Overpass API. Specifically, I requested information on the rail network, train stations and hotels around Munich. 
+**Thus, I'm a strong autodidact who learned the tools *and* completed this project in roughly 60 hours.**
 
-Then, I analysed the data in the geographic information system software QGIS by employing its algorithms to narrow down the rail network and train stations. I also used SQL WHERE statements to filter my data.
+## Research question
+I love to travel and I often use the website https://www.chronotrains.com. It allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin.
 
-My exploration resulted in 21 destinations that I could travel to, for example Baar-Ebenhausen, Landshut (Bay) and Mühldorf (Oberbay). Since I limited my analysis by only looking at hotels, and thus disregarding other accomodation types, the amount of cities could be enlarged by adding further types such as guest houses or hostels.
+But unfortunately, this website mostly features bigger cities, for example it only suggests Augsburg as a potential destination when starting in Munich and travelling for one hour. Though, there are other very interesting villages.
 
-![A screenshot of a map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
+**So, I asked myself: If I wanted to go on a day or weekend trip: Which destinations can I reach from Munich within one hour?**
+
+## Methods
+First, I pulled data from the OpenStreetMap Overpass API. Specifically, I requested information on the rail network, train stations and hotels around Munich. 
+
+Then, I analysed the data in the geographic information system software QGIS by employing 8 algorithms to narrow down the rail network, train stations and hotels. I also used SQL WHERE statements to filter the data.
+
+See details in the file [methods.md](methods.md).
+
+## Challenges
+Though, this is only a very condensed version of my methods. Along the way, there were a lot of challenges that I had to solve, such as this one:
+
+**Problem**: The data that I wanted to pull from the API is quite large: 20MB.
+
+**Solution**: I divided the map in four segments and I added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
+
+![An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates.]( https://github.com/annika-essmann/day-trip-munich/blob/b6a914f8b0e737961f8f19aa5ac779453afe5365/tile_numbering.pdf)
+
+## Results
+Now, having completed my data exploration I know 21 travel destinations around Munich, for example Landshut (Bay). So, I will roughly need half a year to make every trip…I better reserve my trains now.
+
+**One last word on deployment:** Since my project focused on data exploration, I didn't deploy my results because information like this is used as an input for a deeper analysis that then merits a full deployment. 
+
+![A map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
+$\color{#F6F6F6}{\text{
 **Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
 **Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
 **Details**: [credits.md](credits.md)
-
-## Context
-I started this project without having ever worked with geospatial data before. Neither did I know *any* of the tools that I used (see section [Applied tools](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#applied-tools)).
-
-Thus, this demonstrates how I handle a task that I don't fully understand and that doesn't come with an explanation. In other words, I'm a strong autodidact who completed this project in roughly 60 hours. 
-
-## Starting point
-This project is inspired by the website https://www.chronotrains.com which allows to search for all possible destinations that can be reached within a desired travel time from a chosen origin.
-
-However, this website mostly features bigger cities as destinations, for example it only suggests Augsburg as potential destination starting in Munich and travelling for one hour. Though, there are other interesting villages that meet these criteria.
-
-So, I asked myself: If I wanted to spend one hour on the train: Which destinations can I reach from Munich? This question was the starting point of my work.
-
-**Parameters**:<br> 
-- **Origin**: Munich central station because that's where I live
-- **Travel time**: max. one hour
-- **Travel speed**: 80km/h; because it is more likely to take a regional train in this scenario which travels on average between 70-90km/h [[1]](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#sources)
-- **Destinations**: must have at least one hotel; because it's not only an accomodation option, but also a proxy for tourist attractions
+}$
 
 ## Applied tools
 I used the following API, languages and software to complete this project: 
@@ -44,34 +52,18 @@ I used the following API, languages and software to complete this project:
 - **mark down**: to write a well-layouted ReadMe file
 - **Visual Studio Code**: to handle git and edit mark down files
 
-See details in the file [methods.md](methods.md).
-
 ## GenAI usage
-In this project, I used ChatGPT (GPT-5.3 and GPT-5.5) and GreenPT (Main) as a project tutor. Amongst others, the tool helped me to understand: 
+ChatGPT and GreenPT were my project tutors that helped me to understand: 
 - the syntax of the Overpass Query Language,
 - new concepts like EPSG codes, 
 - the software osmconvert and QGIS.
 
-As a rule of thumb, when I received an error message or contemplated the next step, I researched myself for 30-60min before passing a question to ChatGPT or GreenPT.
-
 See details in the file [genai_usage.md](genai_usage.md)
 
-## Results 
-I started my project with the question: Which (small) cities can I reach within one hour from Munich? The answer: I could travel to 21 different (small) cities.
+## Limitations
+To simplify my analysis, I only included hotels and disregarded other accommodation types like camping grounds, guest houses or hostels. Adding these could enlarge the number of possible destinations.
 
-![A screenshot of a map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
-**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
-**Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
-**Details**: [credits.md](credits.md)
-
-## Limitations and further usage
-To simplify my analysis, I only included hotels and disregarded other accomodation types like camping grounds, guest houses or hostels. Adding these could enlarge the amount of possible destinations.
-
-Also, the analysis could be further divided into destinations for a day trip and a weekend trip. For the former, I don't need a hotel, but potential tourist attractions such as museums or hiking trails. This would certainly result in different destinations.
-
-Since my project focused on data exploration, I didn't do a full deployment of my results, e.g. in an app like Streamlit. I regarded a list and an image as sufficient because results like these are usually used as an input for a deeper analysis that then merits a full deployment. 
-
-Yet, these results can also stand on their own and could serve as an addition to the list displayed on https://www.chronotrains.com. Also, the list might be used for a service post on the website https://www.muenchen.de/en/home which also recommends travel destinations in Munich's vicinity. 
+Also, I could divide the analysis into destinations for a day trip and a weekend trip. For the former, I don't need a hotel, but potential tourist attractions such as museums or hiking trails. This would certainly result in different destinations.
 
 ## Credits 
 **Map data**<br> 
@@ -83,4 +75,4 @@ Yet, these results can also stand on their own and could serve as an addition to
 See details in [credits.md](credits.md)
 
 ## Sources
-[1] https://en.wikipedia.org/wiki/Regional-Express 
+[1] https://en.wikipedia.org/wiki/Regional-Express
