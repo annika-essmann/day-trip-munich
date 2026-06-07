@@ -1,6 +1,15 @@
 # Documentation: Methods
 This file lists every step I have taken in my analysis with a detailed description. 
 
+## Research question and parameters
+If I wanted to go on a day or weekend trip: Which destinations can I reach from Munich within one hour?
+
+**Parameters**:<br> 
+- **Origin**: Munich central station because that's where I live
+- **Travel time**: max. one hour
+- **Travel speed**: 80km/h; because it is more likely to take a regional train in this scenario which travels on average between 70-90km/h [[1]](https://github.com/annika-essmann/day-trip-munich/blob/main/ReadMe.md#sources)
+- **Destinations**: must have at least one hotel; because it's not only an accomodation option, but also a proxy for tourist attractions
+
 ## Define map area
 My starting point is Munich, and I want to potentially travel into each direction (north, east, south, west) by 80km. To make the map area large enough, I rounded the distance up to 100km which is approx. equivalent to 1° latitude and 1° longitude (disregarding the Earth's curvature in this case). 
 
