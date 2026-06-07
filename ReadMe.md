@@ -26,10 +26,6 @@ Though, this is only a very condensed version of my methods. Along the way, ther
 
 **Solution**: I divided the map in four segments and I added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
 
-<picture>
-<img src="tile_numbering.png" alt="An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates." width="720" height="799">
-</picture>
-
 ![An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates.](https://github.com/annika-essmann/day-trip-munich/blob/0a30a7704b51f3fae77db0cc75424fbd1051dbcf/tile_numbering.png)
 
 ## Results
