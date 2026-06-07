@@ -63,14 +63,5 @@ To simplify my analysis, I only included hotels and disregarded other accommodat
 
 Also, I could divide the analysis into destinations for a day trip and a weekend trip. For the former, I don't need a hotel, but potential tourist attractions such as museums or hiking trails. This would certainly result in different destinations.
 
-## Credits 
-**Map data**<br> 
-[OpenStreetMap](https://www.openstreetmap.org/copyright)
-
-**Raster**<br>
-© GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)
-
-See details in [credits.md](credits.md)
-
 ## Sources
 [1] https://en.wikipedia.org/wiki/Regional-Express
