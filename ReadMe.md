@@ -26,7 +26,7 @@ Though, this is only a very condensed version of my methods. Along the way, ther
 
 **Solution**: I divided the map in four segments and I added an overlap of +/- 0.05° for tiles 1 and 3, so that there is a small amount of redundant data. This makes the merge of the files easier later on. 
 
-![An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates.]( https://github.com/annika-essmann/day-trip-munich/blob/b6a914f8b0e737961f8f19aa5ac779453afe5365/tile_numbering.pdf)
+![An image showing four tiles labeled 1 to 4 clockwise. In the middle the word ‘Munich’ can be read. Each tile shows its respective coordinates.](https://github.com/annika-essmann/day-trip-munich/blob/b6a914f8b0e737961f8f19aa5ac779453afe5365/tile_numbering.pdf)
 
 ## Results
 Now, having completed my data exploration I know 21 travel destinations around Munich, for example Landshut (Bay). So, I will roughly need half a year to make every trip…I better reserve my trains now.
@@ -34,11 +34,9 @@ Now, having completed my data exploration I know 21 travel destinations around M
 **One last word on deployment:** Since my project focused on data exploration, I didn't deploy my results because information like this is used as an input for a deeper analysis that then merits a full deployment. 
 
 ![A map displaying a rail network around Munich and train stations at the end of each rail line](https://github.com/annika-essmann/day-trip-munich/blob/76c854d3bd8ac14b2a21243ff0587e2042114f26/result_destinations.png)
-$\color{#F6F6F6}{\text{
-**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
+$\color{#F6F6F6}{\text{**Map data**: [OpenStreetMap](https://www.openstreetmap.org/copyright)<br> 
 **Raster**: © GeoBasis-DE / [BKG](https://www.bkg.bund.de/) (2026) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (Daten verändert)<br> 
-**Details**: [credits.md](credits.md)
-}$
+**Details**: [credits.md](credits.md)}$
 
 ## Applied tools
 I used the following API, languages and software to complete this project: 
